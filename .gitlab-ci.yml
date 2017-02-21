@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+publish:
+  before_script:
+    - npm install semantic-release-gitlab
+  only:
+    - master
+  script:
+    - $(npm bin)/semantic-release-gitlab
+  stage: deploy
