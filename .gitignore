@@ -1,1 +1,4 @@
+**/*.js
+**/*.js.snap
+**/*.d.ts
 node_modules
