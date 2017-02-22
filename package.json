@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "$(npm bin)/jest",
-    "build": "$(npm bin)/tsc --declaration",
-    "prepublish": "npm run test && npm run build"
+    "build": "$(npm bin)/tsc --declaration"
   },
   "author": "Warren Seymour",
   "license": "MIT",
