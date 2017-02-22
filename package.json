@@ -17,7 +17,6 @@
     "@types/react-dom": "^0.14.23",
     "@types/react-hot-loader": "^3.0.1",
     "@types/uri-templates": "^0.1.28",
-    "@types/whatwg-fetch": "0.0.33",
     "antd": "^2.7.2",
     "awesome-typescript-loader": "^3.0.4",
     "babel-core": "^6.23.1",
