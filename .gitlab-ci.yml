@@ -8,6 +8,8 @@ before_script:
   - npm install
 
 test:
+  except:
+    - tags
   script:
     - npm run test
     - npm run build
@@ -16,6 +18,8 @@ publish:
   stage: deploy
   only:
     - master
+  except:
+    - tags
   script:
     - npm run build
     - $(npm bin)/semantic-release-gitlab
