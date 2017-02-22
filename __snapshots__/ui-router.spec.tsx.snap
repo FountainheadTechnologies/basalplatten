@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`adds a URL redirection handler 1`] = `"The URL blank does not exist. You have been redirected to the home page."`;
+
+exports[`adds a default error handler 1`] = `
+<div>
+  <p>
+    The following error was encountered during a UI state transition:
+  </p>
+  <code />
+</div>
+`;
