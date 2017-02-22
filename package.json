@@ -4,8 +4,9 @@
   "description": "Core components for building UIs the Fountainhead way",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "$(npm bin)/tsc --declaration"
+    "test": "$(npm bin)/jest",
+    "build": "$(npm bin)/tsc --declaration",
+    "prepublish": "npm run test && npm run build"
   },
   "author": "Warren Seymour",
   "license": "MIT",
