@@ -17,4 +17,5 @@ publish:
   only:
     - master
   script:
+    - npm run build
     - $(npm bin)/semantic-release-gitlab
