@@ -37,6 +37,7 @@
     "style-loader": "^0.13.1",
     "ts-jest": "^19.0.0",
     "typescript": "^2.1.6",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
     "ui-router-react": "^0.4.0",
     "ui-router-rx": "^0.2.1",
     "uri-templates": "^0.2.0",
