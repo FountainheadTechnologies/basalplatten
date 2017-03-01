@@ -4,6 +4,7 @@ import {ParamTypeDefinition, UrlParts} from 'ui-router-core';
 import {UIRouterRx} from 'ui-router-rx';
 import notification from 'antd/lib/notification';
 import * as paramTypes from './ui-router/paramTypes';
+import 'antd/lib/notification/style';
 
 export const buildRouter = (): UIRouterReact => {
   var router = new UIRouterReact();
