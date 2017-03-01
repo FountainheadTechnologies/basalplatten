@@ -22,9 +22,37 @@ export const DEFAULT_VENDORS_DEV = [
 ];
 
 export const buildConfig = (appName: string, options = {}) => {
+  var isProd = process.argv.indexOf('-p') > -1;
   var stack = callsite();
   var caller = stack[1].getFileName();
   var context = dirname(caller);
+
+  var entries = ['./src/index.tsx'];
+
+  var plugins = [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: module => module.context && module.context.indexOf('node_modules') > -1
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './src/index.ejs',
+      cache: false
+    }),
+
+    new StyleExtHtmlWebpackPlugin({
+      minify: true
+    })
+  ];
+
+  if (!isProd) {
+    plugins.push(
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin()
+    );
+
+    entries.unshift('react-hot-loader/patch');
+  }
 
   return defaultsDeep(options, {
     context,
@@ -32,14 +60,7 @@ export const buildConfig = (appName: string, options = {}) => {
     cache: true,
 
     entry: {
-      vendor: [
-        ...DEFAULT_VENDORS,
-        ...DEFAULT_VENDORS_DEV
-      ],
-
-      [appName]: [
-        './src/index.tsx'
-      ]
+      [appName]: entries
     },
 
     output: {
@@ -52,30 +73,7 @@ export const buildConfig = (appName: string, options = {}) => {
       extensions: ['.ts', '.tsx', '.js']
     },
 
-    plugins: [
-      new webpack.NamedModulesPlugin(),
-
-      new webpack.HotModuleReplacementPlugin(),
-
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        filename: 'vendor.bundle.js'
-      }),
-
-      new webpack.SourceMapDevToolPlugin({
-        exclude: 'vendor',
-        filename: '[name].js.map'
-      }),
-
-      new HtmlWebpackPlugin({
-        template: './src/index.ejs',
-        cache: false
-      }),
-
-      new StyleExtHtmlWebpackPlugin({
-        minify: true
-      })
-    ],
+    plugins,
 
     module: {
       rules: [{
@@ -121,7 +119,7 @@ export const buildConfig = (appName: string, options = {}) => {
 
     devServer: {
       historyApiFallback: true,
-      hot: true,
+      hot: !isProd,
       host: "0.0.0.0",
       port: 8081,
       proxy: {
