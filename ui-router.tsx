@@ -2,7 +2,7 @@ import * as React from 'react';
 import {UIRouterReact, UIRouter, UIView, servicesPlugin, pushStateLocationPlugin} from 'ui-router-react';
 import {ParamTypeDefinition, UrlParts} from 'ui-router-core';
 import {UIRouterRx} from 'ui-router-rx';
-import {notification} from 'antd';
+import notification from 'antd/lib/notification';
 import * as paramTypes from './ui-router/paramTypes';
 
 export const buildRouter = (): UIRouterReact => {

@@ -1,5 +1,5 @@
 import {buildRouter} from './ui-router';
-import {notification} from 'antd';
+import notification from 'antd/lib/notification';
 import * as paramTypes from './ui-router/paramTypes';
 
 it('adds a default error handler', async () => {

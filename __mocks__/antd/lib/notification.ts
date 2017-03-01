@@ -1,4 +1,4 @@
-export const notification = {
+export default {
   error: jest.fn(),
   info: jest.fn()
 }
