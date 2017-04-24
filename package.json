@@ -1,11 +1,12 @@
 {
   "name": "basalplatten",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "Core components for building UIs the Fountainhead way",
   "main": "index.js",
   "scripts": {
     "test": "$(npm bin)/jest",
-    "build": "$(npm bin)/tsc --declaration"
+    "build": "$(npm bin)/tsc --declaration",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Warren Seymour",
   "license": "MIT",
@@ -33,7 +34,6 @@
     "react-dom": "^15.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "rxjs": "^5.2.0",
-    "semantic-release-gitlab": "^3.0.2",
     "style-ext-html-webpack-plugin": "^2.0.6",
     "style-loader": "^0.13.1",
     "ts-jest": "^19.0.0",
@@ -46,11 +46,12 @@
     "webpack-dev-server": "^2.4.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^1.2.0"
+    "cz-conventional-changelog": "^1.2.0",
+    "semantic-release": "^6.3.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/fountainhead/basalplatten.git"
+    "url": "https://github.com/FountainheadTechnologies/basalplatten.git"
   },
   "keywords": [
     "react",
@@ -61,9 +62,9 @@
     "webpack"
   ],
   "bugs": {
-    "url": "https://gitlab.com/fountainhead/basalplatten/issues"
+    "url": "https://github.com/FountainheadTechnologies/basalplatten/issues"
   },
-  "homepage": "https://gitlab.com/fountainhead/basalplatten#README",
+  "homepage": "https://github.com/FountainheadTechnologies/basalplatten#README",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
