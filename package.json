@@ -4,7 +4,7 @@
   "description": "Core components for building UIs the Fountainhead way",
   "main": "index.js",
   "scripts": {
-    "test": "$(npm bin)/jest",
+    "test": "$(npm bin)/jest --no-cache",
     "build": "$(npm bin)/tsc --declaration",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },

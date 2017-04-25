@@ -4,8 +4,7 @@
         "target": "es6",
         "sourceMap": false,
         "jsx": "react",
-        "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true
+        "skipLibCheck": true
     },
     "exclude": [
       "node_modules"
