@@ -1,6 +1,4 @@
-**/*.ts
 !**/*.d.ts
-**/*.tsx
 **/*.spec.*
 **/__mocks__/**
 **/__snapshots__/**

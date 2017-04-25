@@ -26,6 +26,8 @@ export const buildRouter = (): UIRouterReact => {
 
       duration: null
     });
+
+    throw err;
   });
 
   router.urlRouter.otherwise((matchValue, url, router) => {
@@ -38,7 +40,7 @@ export const buildRouter = (): UIRouterReact => {
   });
 
   Object.keys(paramTypes).forEach(name => {
-    router.urlMatcherFactory.type(name, paramTypes[name]);
+    router.urlMatcherFactory.type(name, (paramTypes as any)[name]);
   });
 
   return router;
