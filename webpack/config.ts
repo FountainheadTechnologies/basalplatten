@@ -1,24 +1,25 @@
 import * as webpack from 'webpack';
-import {dirname, join} from 'path';
+import { dirname, join } from 'path';
 import * as callsite from 'callsite';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as StyleExtHtmlWebpackPlugin from 'style-ext-html-webpack-plugin';
-import {defaultsDeep} from 'lodash';
+import * as ExtractTextPlugin from 'extract-text-webpack-plugin';
+import { defaultsDeep } from 'lodash';
 
 export const DEFAULT_VENDORS = [
-	'react',
-	'react-dom',
-	'ui-router-react',
-	'ui-router-core',
-	'ui-router-rx',
-	'moment',
-	'lodash',
-	'ramda'
+  'react',
+  'react-dom',
+  'ui-router-react',
+  'ui-router-core',
+  'ui-router-rx',
+  'moment',
+  'lodash',
+  'ramda'
 ];
 
 export const DEFAULT_VENDORS_DEV = [
-	'react-hot-loader/patch',
-	'react-hot-loader'
+  'react-hot-loader/patch',
+  'react-hot-loader'
 ];
 
 export const buildConfig = (appName: string, options = {}) => {
@@ -45,7 +46,10 @@ export const buildConfig = (appName: string, options = {}) => {
     })
   ];
 
-  if (!isProd) {
+  if (isProd) {
+    var styles = new ExtractTextPlugin('[name].css');
+    plugins.push(styles);
+  } else {
     plugins.push(
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin()
@@ -100,17 +104,15 @@ export const buildConfig = (appName: string, options = {}) => {
         }]
       }, {
         test: /\.css$/,
-        use: [
-          'style-loader',
+        use: isProd ? styles.extract([
           'css-loader'
-        ]
+        ]) : ['style-loader', 'css-loader']
       }, {
         test: /^(?!.*\.inline).*\.less$/,
-        use: [
-          'style-loader',
+        use: isProd ? styles.extract([
           'css-loader',
           'less-loader'
-        ]
+        ]) : ['style-loader', 'css-loader', 'css-loader']
       }, {
         test: /\.inline\.less$/,
         loader: StyleExtHtmlWebpackPlugin.inline('less-loader')
