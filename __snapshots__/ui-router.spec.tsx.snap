@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`adds a URL redirection handler 1`] = `"The URL blank does not exist. You have been redirected to the home page."`;
+exports[`adds a URL redirection handler 1`] = `"The URL blank does not exist. You have been redirected."`;
 
 exports[`adds a default error handler 1`] = `
 <div>

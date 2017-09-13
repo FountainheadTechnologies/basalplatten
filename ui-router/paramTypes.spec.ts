@@ -18,8 +18,8 @@ describe('where', () => {
   });
 
   it('matches the regex pattern', () => {
-    expect(str).toMatch(paramTypes.where.pattern);
-    expect('test').not.toMatch(paramTypes.where.pattern);
+    expect(str).toMatch(paramTypes.where.pattern as RegExp);
+    expect('test').not.toMatch(paramTypes.where.pattern as RegExp);
   });
 });
 
@@ -39,7 +39,7 @@ describe('order', () => {
   });
 
   it('matches the regex pattern', () => {
-    expect(str).toMatch(paramTypes.order.pattern);
-    expect('test').not.toMatch(paramTypes.order.pattern);
+    expect(str).toMatch(paramTypes.order.pattern as RegExp);
+    expect('test').not.toMatch(paramTypes.order.pattern as RegExp);
   });
 });

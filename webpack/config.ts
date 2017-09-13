@@ -46,8 +46,9 @@ export const buildConfig = (appName: string, options = {}) => {
     })
   ];
 
+  var styles: any;
   if (isProd) {
-    var styles = new ExtractTextPlugin('[name].css');
+    styles = new ExtractTextPlugin('[name].css');
     plugins.push(styles);
   } else {
     plugins.push(
