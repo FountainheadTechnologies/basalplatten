@@ -96,8 +96,7 @@ export const buildConfig = (appName: string, options = {}) => {
               plugins: [
                 ['import', {
                   'libraryName': 'antd',
-                  'libraryDirectory': 'lib',
-                  'style': 'css'
+                  'style': true
                 }]
               ]
             }
@@ -113,7 +112,7 @@ export const buildConfig = (appName: string, options = {}) => {
         use: isProd ? styles.extract([
           'css-loader',
           'less-loader'
-        ]) : ['style-loader', 'css-loader', 'css-loader']
+        ]) : ['style-loader', 'css-loader', 'less-loader']
       }, {
         test: /\.inline\.less$/,
         loader: StyleExtHtmlWebpackPlugin.inline('less-loader')
