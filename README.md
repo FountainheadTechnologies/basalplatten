@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FountainheadTechnologies/basalplatten.svg?branch=master)](https://travis-ci.org/FountainheadTechnologies/basalplatten)
+
 # BasalPlatten
 
 BasalPlatten ('Base Plate') is a collection of core components and utilities to help build UIs, the 'Fountainhead' way.
