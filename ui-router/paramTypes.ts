@@ -1,4 +1,4 @@
-import {ParamTypeDefinition} from 'ui-router-core';
+import { ParamTypeDefinition } from '@uirouter/core';
 
 import {
   is,
@@ -85,7 +85,7 @@ export const order: ParamTypeDefinition = {
 
   decode: (value) => {
     var [field, direction] = value.split(':');
-    return {[field]: direction};
+    return { [field]: direction };
   },
 
   pattern: /\w+:(?:asc|desc)|^$/

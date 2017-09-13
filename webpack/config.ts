@@ -9,9 +9,9 @@ import { defaultsDeep } from 'lodash';
 export const DEFAULT_VENDORS = [
   'react',
   'react-dom',
-  'ui-router-react',
-  'ui-router-core',
-  'ui-router-rx',
+  '@uirouter/react',
+  '@uirouter/core',
+  '@uirouter/rx',
   'moment',
   'lodash',
   'ramda'

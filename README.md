@@ -49,7 +49,7 @@ Create a UI-Router instance pre-configured with all of our favourite things usin
 
 ```javascript
 // AppEntryPoint.jsx
-const {UIRouter} = require('ui-router-react');
+const {UIRouter} = require('@uirouter/react');
 const {buildRouter} = require('basalplatten/ui-router');
 
 var router = buildRouter();

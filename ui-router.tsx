@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {UIRouterReact, UIRouter, UIView, servicesPlugin, pushStateLocationPlugin} from 'ui-router-react';
-import {ParamTypeDefinition, UrlParts} from 'ui-router-core';
-import {UIRouterRx} from 'ui-router-rx';
+import {UIRouterReact, UIRouter, UIView, servicesPlugin, pushStateLocationPlugin} from '@uirouter/react';
+import {ParamTypeDefinition, UrlParts} from '@uirouter/react';
+import {UIRouterRx} from '@uirouter/rx';
 import notification from 'antd/lib/notification';
 import * as paramTypes from './ui-router/paramTypes';
 import 'antd/lib/notification/style';
