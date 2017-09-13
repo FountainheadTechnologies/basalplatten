@@ -20,7 +20,7 @@
     "@types/uri-templates": "^0.1.28",
     "@uirouter/react": "^0.5.1",
     "@uirouter/rx": "^0.4.1",
-    "antd": "^2.7.2",
+    "antd": "^2.13.1",
     "awesome-typescript-loader": "^3.0.4",
     "babel-core": "^6.23.1",
     "babel-plugin-import": "^1.1.1",
