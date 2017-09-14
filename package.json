@@ -7,7 +7,9 @@
     "test": "jest --no-cache --coverage",
     "build": "tsc --declaration",
     "push-coverage": "cat coverage/lcov.info | coveralls",
-    "semantic-release": "semantic-release pre && cp README.md package.json .npmrc dist && cd dist && npm publish && cd .. && semantic-release post",
+    "copy-to-dist": "cp README.md package.json .npmrc dist && cd src && cp **/*.less ../dist --parents",
+    "publish-dist": "cd dist && npm publish",
+    "semantic-release": "semantic-release pre && npm run copy-to-dist && npm run publish-dist && semantic-release post",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
