@@ -2,13 +2,12 @@
   "name": "basalplatten",
   "version": "0.0.0-development",
   "description": "Core components for building UIs the Fountainhead way",
-  "main": "dist/index.js",
-  "types": "dist",
+  "main": "index.js",
   "scripts": {
     "test": "jest --no-cache --coverage",
     "build": "tsc --declaration",
     "push-coverage": "cat coverage/lcov.info | coveralls",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "cp package.json dist && cd dist && semantic-release pre && npm publish && semantic-release post",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
