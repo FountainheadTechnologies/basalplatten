@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest --no-cache --coverage",
     "build": "tsc --declaration",
-    "push-coverage": "cat src/coverage/lcov.info | coveralls",
+    "push-coverage": "cat coverage/lcov.info | coveralls",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
