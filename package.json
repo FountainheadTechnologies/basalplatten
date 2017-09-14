@@ -7,7 +7,7 @@
     "test": "jest --no-cache --coverage",
     "build": "tsc --declaration",
     "push-coverage": "cat coverage/lcov.info | coveralls",
-    "semantic-release": "cp package.json dist && cd dist && semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release pre && cp README.md package.json .npmrc dist && cd dist && npm publish && cd .. && semantic-release post",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -71,7 +71,7 @@
     "cz-conventional-changelog": "^1.2.0",
     "enzyme": "^2.9.1",
     "react-test-renderer": "^15.6.1",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^7.0.2"
   },
   "repository": {
     "type": "git",
