@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Resource, Form as HALForm } from '@optics/hal-client';
 import { Data, Schema } from '@optics/hal-client/dist/Form';
-import { Form as AntForm, Button } from 'antd';
+
+import AntForm from 'antd/lib/form';
+import 'antd/lib/form/style';
+
+import Button from 'antd/lib/button';
+import 'antd/lib/button/style';
+
 import { FormProps as AntFormProps, WrappedFormUtils } from 'antd/lib/form/Form';
 import { FormItemProps as AntFormItemProps } from 'antd/lib/form/FormItem';
 

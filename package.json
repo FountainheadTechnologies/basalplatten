@@ -108,6 +108,9 @@
       "!**/*.d.ts"
     ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "moduleNameMapper": {
+      "\\.less": "<rootDir>/../tools/styleMock.js"
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",

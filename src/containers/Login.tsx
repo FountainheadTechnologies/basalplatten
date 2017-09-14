@@ -1,7 +1,9 @@
 import React from 'react';
-import { Row } from 'antd';
 import { Resource } from '@optics/hal-client';
 import { Transition, TargetState } from '@uirouter/react';
+
+import Row from 'antd/lib/row';
+import 'antd/lib/row/style';
 
 import { CredentialStore } from '../CredentialStore';
 import { LoginForm } from '../components/LoginForm';

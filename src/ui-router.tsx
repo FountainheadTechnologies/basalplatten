@@ -1,8 +1,9 @@
 import React from 'react';
 import { UIRouterReact, servicesPlugin, pushStateLocationPlugin } from '@uirouter/react';
 import { UIRouterRx } from '@uirouter/rx';
-import notification from 'antd/lib/notification';
 import * as paramTypes from './ui-router/paramTypes';
+
+import notification from 'antd/lib/notification';
 import 'antd/lib/notification/style';
 
 export const buildRouter = (): UIRouterReact => {

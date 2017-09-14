@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Resource, Form as HALForm } from '@optics/hal-client';
-import { Alert, Button } from 'antd';
-import { AlertProps } from 'antd/lib/alert';
+
+import Alert, { AlertProps } from 'antd/lib/alert';
+import 'antd/lib/button/style';
+import Button from 'antd/lib/button';
 import { ButtonProps } from 'antd/lib/button/button';
+import 'antd/lib/button/style';
 
 import { Form as FormComponent } from './Form';
 import { SchemaFields } from './SchemaFields';
