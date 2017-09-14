@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/FountainheadTechnologies/basalplatten.svg?branch=master)](https://travis-ci.org/FountainheadTechnologies/basalplatten)
+[![Coverage Status](https://coveralls.io/repos/github/FountainheadTechnologies/basalplatten/badge.svg?branch=master)](https://coveralls.io/github/FountainheadTechnologies/basalplatten?branch=master)
 
 # BasalPlatten
 
