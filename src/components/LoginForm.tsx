@@ -18,7 +18,7 @@ export interface Props {
   onSuccess?: (resource: Resource) => void;
   alert?: (err?: Error) => Alert | undefined;
   submitButton?: ButtonProps | false;
-  fields?: React.ReactNode;
+  fields?: React.StatelessComponent<any> | React.ComponentClass<any> | React.ClassicComponentClass<any>;
 }
 
 export interface State {
@@ -35,9 +35,7 @@ export class LoginForm extends React.Component<Props> {
   render() {
     const {
       resourceForm,
-      fields = (
-        <SchemaFields />
-      )
+      fields: Fields = SchemaFields
     } = this.props;
 
     return (
@@ -49,7 +47,7 @@ export class LoginForm extends React.Component<Props> {
           onSuccess={this._onSuccess}
           onFailure={this._onFailure}
         >
-          {fields}
+          <Fields />
         </FormComponent>
       </div>
     );

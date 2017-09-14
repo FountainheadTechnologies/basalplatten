@@ -17,7 +17,7 @@ export interface Props {
     api: Resource;
     credentialStore: CredentialStore;
     defaultReturnState?: string;
-    fields?: React.ReactNode;
+    fields?: React.StatelessComponent<any> | React.ComponentClass<any> | React.ClassicComponentClass<any>;
   }
 }
 

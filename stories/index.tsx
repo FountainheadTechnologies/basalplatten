@@ -86,27 +86,31 @@ storiesOf('Login', module)
       }}
     />
   ))
-  .add('Customized fields', () => (
-    <Login
-      transition={mockTransition}
-      resolves={{
-        api: mockApiResource,
-        credentialStore: mockCredentialStore,
-        fields: (
-          <div>
-            <SchemaField name="username" showLabel={false}>
-              <Input addonBefore={<Icon type="user" />} placeholder="User Name" />
-            </SchemaField>
+  .add('Customized fields', () => {
+    const CustomFields: React.StatelessComponent = () => (
+      <div>
+        <SchemaField name="username" showLabel={false}>
+          <Input addonBefore={<Icon type="user" />} placeholder="User Name" />
+        </SchemaField>
 
-            <SchemaField name="password" showLabel={false}>
-              <Input addonBefore={<Icon type="lock" />} placeholder="Password" />
-            </SchemaField>
+        <SchemaField name="password" showLabel={false}>
+          <Input addonBefore={<Icon type="lock" />} placeholder="Password" />
+        </SchemaField>
 
-            <SchemaField name="2fa_token" showLabel={false}>
-              <Input addonBefore={<Icon type="calculator" />} placeholder="2FA Token" />
-            </SchemaField>
-          </div>
-        )
-      }}
-    />
-  ));
+        <SchemaField name="2fa_token" showLabel={false}>
+          <Input addonBefore={<Icon type="calculator" />} placeholder="2FA Token" />
+        </SchemaField>
+      </div>
+    );
+
+    return (
+      <Login
+        transition={mockTransition}
+        resolves={{
+          api: mockApiResource,
+          credentialStore: mockCredentialStore,
+          fields: CustomFields
+        }}
+      />
+    )
+  });
