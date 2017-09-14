@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import titleCase from 'title-case';
 import moment from 'moment';
-import { Form as AntForm, Input, Switch } from 'antd';
+
+import AntForm from 'antd/lib/form';
+import Input from 'antd/lib/input';
+import 'antd/lib/input/style';
+import Switch from 'antd/lib/switch';
+import 'antd/lib/switch/style';
+
 import { WrappedFormUtils, GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import { Property } from '@optics/hal-client/dist/Form';
 

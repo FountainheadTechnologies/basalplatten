@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "dist/webpack"
+  },
+  "include": [
+    "src/webpack"
+  ]
+}

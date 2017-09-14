@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es6",
     "target": "es6",
+    "moduleResolution": "node",
     "sourceMap": false,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
@@ -17,6 +18,7 @@
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",
-    "**/__mocks__/*"
+    "**/__mocks__/*",
+    "**/webpack"
   ]
 }

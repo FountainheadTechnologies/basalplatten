@@ -1,12 +1,7 @@
 {
   "extends": "./tsconfig",
-  "compilerOptions": {
-    // Use es6 modules so that babel-plugin-import works correctly
-    "module": "es6",
-    // Use Node module resolution instead of classic (default when using module: es6)
-    "moduleResolution": "node"
-  },
   "exclude": [
+    "src/webpack",
     "node_modules",
     "dist"
   ]

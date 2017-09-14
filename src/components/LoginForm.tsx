@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Resource, Form as HALForm } from '@optics/hal-client';
 
 import Alert, { AlertProps } from 'antd/lib/alert';
-import 'antd/lib/button/style';
+import 'antd/lib/alert/style';
 import Button from 'antd/lib/button';
 import { ButtonProps } from 'antd/lib/button/button';
 import 'antd/lib/button/style';
