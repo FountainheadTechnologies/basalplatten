@@ -96,14 +96,14 @@
   },
   "jest": {
     "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(ts|tsx)": "<rootDir>/../node_modules/ts-jest/preprocessor.js"
     },
     "mapCoverage": true,
+    "rootDir": "src",
     "collectCoverageFrom": [
-      "!<rootDir>/stories",
-      "!**/*.d.ts",
       "**/*.ts",
-      "**/*.tsx"
+      "**/*.tsx",
+      "!**/*.d.ts"
     ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
     "moduleFileExtensions": [

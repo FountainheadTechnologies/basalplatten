@@ -6,9 +6,9 @@ import { Transition } from '@uirouter/react';
 import { Resource } from '@optics/hal-client';
 import { Input, Icon } from 'antd';
 
-import { CredentialStore } from '../CredentialStore';
-import { Login } from '../containers/Login';
-import { SchemaField } from '../components/SchemaField';
+import { CredentialStore } from '../src/CredentialStore';
+import { Login } from '../src/containers/Login';
+import { SchemaField } from '../src/components/SchemaField';
 
 promiseFinally.shim();
 

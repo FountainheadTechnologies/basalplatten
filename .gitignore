@@ -1,7 +1,7 @@
 **/*.js
 **/*.js.snap
 **/*.d.ts
+src/coverage
 node_modules
-coverage
 dist
 .awcache
