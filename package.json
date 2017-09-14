@@ -2,15 +2,20 @@
   "name": "basalplatten",
   "version": "0.0.0-development",
   "description": "Core components for building UIs the Fountainhead way",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist",
   "scripts": {
-    "test": "$(npm bin)/jest --no-cache",
-    "build": "$(npm bin)/tsc --declaration",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "jest --no-cache --coverage",
+    "build": "tsc --declaration",
+    "push-coverage": "cat src/coverage/lcov.info | coveralls",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "Warren Seymour",
   "license": "MIT",
   "dependencies": {
+    "@optics/hal-client": "^2.0.0",
     "@types/jest": "^18.1.1",
     "@types/node": "^7.0.5",
     "@types/ramda": "0.0.3",
@@ -21,7 +26,7 @@
     "@uirouter/react": "^0.5.1",
     "@uirouter/rx": "^0.4.1",
     "antd": "^2.13.1",
-    "awesome-typescript-loader": "^3.0.4",
+    "awesome-typescript-loader": "^3.2.3",
     "babel-core": "^6.23.1",
     "babel-plugin-import": "^1.1.1",
     "babel-preset-es2015": "^6.22.0",
@@ -29,9 +34,11 @@
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
-    "jest": "^19.0.0",
+    "jest": "^21.1.0",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "promise.prototype.finally": "^3.0.1",
+    "prop-types": "^15.5.10",
     "ramda": "^0.23.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -39,7 +46,8 @@
     "rxjs": "^5.2.0",
     "style-ext-html-webpack-plugin": "^2.0.6",
     "style-loader": "^0.13.1",
-    "ts-jest": "^19.0.0",
+    "title-case": "^2.1.1",
+    "ts-jest": "^21.0.1",
     "typescript": "^2.4.2",
     "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
     "uri-templates": "^0.2.0",
@@ -47,12 +55,23 @@
     "webpack-dev-server": "^2.4.1"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-links": "^3.2.6",
+    "@storybook/react": "^3.2.8",
     "@types/callsite": "^1.0.30",
+    "@types/enzyme": "^2.8.7",
     "@types/extract-text-webpack-plugin": "^2.1.0",
     "@types/html-webpack-plugin": "^2.28.0",
     "@types/lodash": "^4.14.74",
+    "@types/promise.prototype.finally": "^2.0.2",
+    "@types/prop-types": "^15.5.1",
+    "@types/storybook__addon-actions": "^3.0.1",
+    "@types/storybook__react": "^3.0.5",
     "@types/webpack": "^3.0.10",
+    "coveralls": "^2.13.1",
     "cz-conventional-changelog": "^1.2.0",
+    "enzyme": "^2.9.1",
+    "react-test-renderer": "^15.6.1",
     "semantic-release": "^6.3.2"
   },
   "repository": {
@@ -80,6 +99,13 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "mapCoverage": true,
+    "collectCoverageFrom": [
+      "!<rootDir>/stories",
+      "!**/*.d.ts",
+      "**/*.ts",
+      "**/*.tsx"
+    ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
     "moduleFileExtensions": [
       "ts",

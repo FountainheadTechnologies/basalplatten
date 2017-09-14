@@ -4,12 +4,16 @@
     "target": "es6",
     "sourceMap": false,
     "jsx": "react",
+    "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "outDir": "dist"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "stories"
   ]
 }

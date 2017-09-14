@@ -2,3 +2,5 @@
 **/*.spec.*
 **/__mocks__/**
 **/__snapshots__/**
+stories
+coverage

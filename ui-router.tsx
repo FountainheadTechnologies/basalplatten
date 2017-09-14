@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { UIRouterReact, servicesPlugin, pushStateLocationPlugin } from '@uirouter/react';
 import { UIRouterRx } from '@uirouter/rx';
 import notification from 'antd/lib/notification';
