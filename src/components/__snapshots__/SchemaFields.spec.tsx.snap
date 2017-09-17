@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default behaviour renders SchemaField components for all properties in schema 1`] = `
+<div
+  className="schema-fields"
+>
+  <Component
+    key="forename"
+    label="Forename"
+    name="forename"
+  />
+  <Component
+    key="surname"
+    label="Surname"
+    name="surname"
+  />
+  <Component
+    key="date_of_birth"
+    label="Date Of Birth"
+    name="date_of_birth"
+  />
+</div>
+`;
+
+exports[`when \`props.except\` is set renders SchemaField components for all properties in schema not in \`props.except\` 1`] = `
+<div
+  className="schema-fields"
+>
+  <Component
+    key="forename"
+    label="Forename"
+    name="forename"
+  />
+  <Component
+    key="surname"
+    label="Surname"
+    name="surname"
+  />
+</div>
+`;
+
+exports[`when \`props.only\` is set only renders SchemaField components for properties in schema and in \`props.only\` 1`] = `
+<div
+  className="schema-fields"
+>
+  <Component
+    key="forename"
+    label="Forename"
+    name="forename"
+  />
+  <Component
+    key="surname"
+    label="Surname"
+    name="surname"
+  />
+</div>
+`;

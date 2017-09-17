@@ -1,12 +1,168 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`default behaviour renders an empty Ant form 1`] = `
+exports[`default behaviour renders an empty Ant form with a Submit button 1`] = `
 <Form(WrappedComponent)
+  onFailure={[Function]}
+  onSuccess={[Function]}
   resourceForm={
     Object {
-      "properties": Object {},
+      "schema": Object {
+        "properties": Object {
+          "date_of_birth": Object {
+            "format": "date-time",
+            "type": "string",
+          },
+          "forename": Object {
+            "type": "string",
+          },
+          "surname": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "forename",
+          "surname",
+        ],
+      },
       "submit": [Function],
     }
   }
-/>
+>
+  <Component
+    form={
+      Object {
+        "getFieldDecorator": [Function],
+        "getFieldError": [Function],
+        "getFieldInstance": [Function],
+        "getFieldProps": [Function],
+        "getFieldValue": [Function],
+        "getFieldsError": [Function],
+        "getFieldsValue": [Function],
+        "isFieldTouched": [Function],
+        "isFieldValidating": [Function],
+        "isFieldsTouched": [Function],
+        "isFieldsValidating": [Function],
+        "isSubmitting": [Function],
+        "resetFields": [Function],
+        "setFields": [Function],
+        "setFieldsInitialValue": [Function],
+        "setFieldsValue": [Function],
+        "submit": [Function],
+        "validateFields": [Function],
+        "validateFieldsAndScroll": [Function],
+      }
+    }
+    onFailure={[Function]}
+    onSuccess={[Function]}
+    resourceForm={
+      Object {
+        "schema": Object {
+          "properties": Object {
+            "date_of_birth": Object {
+              "format": "date-time",
+              "type": "string",
+            },
+            "forename": Object {
+              "type": "string",
+            },
+            "surname": Object {
+              "type": "string",
+            },
+          },
+          "required": Array [
+            "forename",
+            "surname",
+          ],
+        },
+        "submit": [Function],
+      }
+    }
+    wrappedComponentRef={[Function]}
+  >
+    <FormComponent
+      form={
+        Object {
+          "getFieldDecorator": [Function],
+          "getFieldError": [Function],
+          "getFieldInstance": [Function],
+          "getFieldProps": [Function],
+          "getFieldValue": [Function],
+          "getFieldsError": [Function],
+          "getFieldsValue": [Function],
+          "isFieldTouched": [Function],
+          "isFieldValidating": [Function],
+          "isFieldsTouched": [Function],
+          "isFieldsValidating": [Function],
+          "isSubmitting": [Function],
+          "resetFields": [Function],
+          "setFields": [Function],
+          "setFieldsInitialValue": [Function],
+          "setFieldsValue": [Function],
+          "submit": [Function],
+          "validateFields": [Function],
+          "validateFieldsAndScroll": [Function],
+        }
+      }
+      onFailure={[Function]}
+      onSuccess={[Function]}
+      resourceForm={
+        Object {
+          "schema": Object {
+            "properties": Object {
+              "date_of_birth": Object {
+                "format": "date-time",
+                "type": "string",
+              },
+              "forename": Object {
+                "type": "string",
+              },
+              "surname": Object {
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "forename",
+              "surname",
+            ],
+          },
+          "submit": [Function],
+        }
+      }
+      wrappedComponentRef={[Function]}
+    >
+      <Form
+        hideRequiredMark={false}
+        layout="horizontal"
+        onSubmit={[Function]}
+        prefixCls="ant-form"
+      >
+        <form
+          className="ant-form ant-form-horizontal"
+          onSubmit={[Function]}
+        >
+          <Button
+            clicked={false}
+            ghost={false}
+            htmlType="submit"
+            loading={false}
+            prefixCls="ant-btn"
+            type="primary"
+          >
+            <button
+              className="ant-btn ant-btn-primary"
+              onClick={[Function]}
+              type="submit"
+            >
+              <span
+                key=".0"
+              >
+                Submit
+              </span>
+            </button>
+          </Button>
+        </form>
+      </Form>
+    </FormComponent>
+  </Component>
+</Form(WrappedComponent)>
 `;

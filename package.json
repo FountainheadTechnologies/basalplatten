@@ -8,7 +8,7 @@
     "build": "npm run build:main && npm run build:webpack",
     "build:main": "tsc --declaration",
     "build:webpack": "tsc --declaration -p tsconfig.webpack.json",
-    "push-coverage": "cat coverage/lcov.info | coveralls",
+    "push-coverage": "cat src/coverage/lcov.info | coveralls",
     "copy-to-dist": "cp README.md package.json .npmrc dist && cd src && cp **/*.less ../dist --parents",
     "publish-dist": "cd dist && npm publish",
     "semantic-release": "semantic-release pre && npm run copy-to-dist && npm run publish-dist && semantic-release post",
@@ -74,6 +74,7 @@
     "coveralls": "^2.13.1",
     "cz-conventional-changelog": "^1.2.0",
     "enzyme": "^2.9.1",
+    "enzyme-to-json": "^2.0.0",
     "react-test-renderer": "^15.6.1",
     "semantic-release": "^7.0.2"
   },
@@ -100,7 +101,7 @@
   },
   "jest": {
     "transform": {
-      ".(ts|tsx)": "<rootDir>/../node_modules/ts-jest/preprocessor.js"
+      ".(ts|tsx)": "ts-jest/preprocessor"
     },
     "mapCoverage": true,
     "rootDir": "src",
@@ -110,6 +111,9 @@
       "!**/*.d.ts"
     ],
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "moduleNameMapper": {
       "\\.less": "<rootDir>/../tools/styleMock.js"
     },

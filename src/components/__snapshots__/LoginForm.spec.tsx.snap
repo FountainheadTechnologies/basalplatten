@@ -1,0 +1,526 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default behaviour renders an empty Form with an alert and Log In button 1`] = `
+<LoginForm
+  onSuccess={[Function]}
+  resourceForm={
+    Object {
+      "schema": Object {
+        "properties": Object {
+          "password": Object {
+            "type": "string",
+          },
+          "username": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "username",
+          "password",
+        ],
+      },
+      "submit": [Function],
+    }
+  }
+>
+  <div
+    className="login-form"
+  >
+    <Alert
+      className="login-form__alert login-form__alert--info"
+      message="Please log in to continue"
+      showIcon={true}
+      type="info"
+    >
+      <RcAnimate
+        component=""
+        onEnd={[Function]}
+        showProp="data-show"
+        transitionName="ant-alert-slide-up"
+      >
+        <div />
+      </RcAnimate>
+    </Alert>
+    <Form(WrappedComponent)
+      onFailure={[Function]}
+      onSuccess={[Function]}
+      resourceForm={
+        Object {
+          "schema": Object {
+            "properties": Object {
+              "password": Object {
+                "type": "string",
+              },
+              "username": Object {
+                "type": "string",
+              },
+            },
+            "required": Array [
+              "username",
+              "password",
+            ],
+          },
+          "submit": [Function],
+        }
+      }
+      submitButton={
+        <Button
+          className="login-form__submit-button"
+          clicked={false}
+          ghost={false}
+          htmlType="submit"
+          loading={false}
+          prefixCls="ant-btn"
+          type="primary"
+        >
+          Log In
+        </Button>
+      }
+    >
+      <Component
+        form={
+          Object {
+            "getFieldDecorator": [Function],
+            "getFieldError": [Function],
+            "getFieldInstance": [Function],
+            "getFieldProps": [Function],
+            "getFieldValue": [Function],
+            "getFieldsError": [Function],
+            "getFieldsValue": [Function],
+            "isFieldTouched": [Function],
+            "isFieldValidating": [Function],
+            "isFieldsTouched": [Function],
+            "isFieldsValidating": [Function],
+            "isSubmitting": [Function],
+            "resetFields": [Function],
+            "setFields": [Function],
+            "setFieldsInitialValue": [Function],
+            "setFieldsValue": [Function],
+            "submit": [Function],
+            "validateFields": [Function],
+            "validateFieldsAndScroll": [Function],
+          }
+        }
+        onFailure={[Function]}
+        onSuccess={[Function]}
+        resourceForm={
+          Object {
+            "schema": Object {
+              "properties": Object {
+                "password": Object {
+                  "type": "string",
+                },
+                "username": Object {
+                  "type": "string",
+                },
+              },
+              "required": Array [
+                "username",
+                "password",
+              ],
+            },
+            "submit": [Function],
+          }
+        }
+        submitButton={
+          <Button
+            className="login-form__submit-button"
+            clicked={false}
+            ghost={false}
+            htmlType="submit"
+            loading={false}
+            prefixCls="ant-btn"
+            type="primary"
+          >
+            Log In
+          </Button>
+        }
+        wrappedComponentRef={[Function]}
+      >
+        <FormComponent
+          form={
+            Object {
+              "getFieldDecorator": [Function],
+              "getFieldError": [Function],
+              "getFieldInstance": [Function],
+              "getFieldProps": [Function],
+              "getFieldValue": [Function],
+              "getFieldsError": [Function],
+              "getFieldsValue": [Function],
+              "isFieldTouched": [Function],
+              "isFieldValidating": [Function],
+              "isFieldsTouched": [Function],
+              "isFieldsValidating": [Function],
+              "isSubmitting": [Function],
+              "resetFields": [Function],
+              "setFields": [Function],
+              "setFieldsInitialValue": [Function],
+              "setFieldsValue": [Function],
+              "submit": [Function],
+              "validateFields": [Function],
+              "validateFieldsAndScroll": [Function],
+            }
+          }
+          onFailure={[Function]}
+          onSuccess={[Function]}
+          resourceForm={
+            Object {
+              "schema": Object {
+                "properties": Object {
+                  "password": Object {
+                    "type": "string",
+                  },
+                  "username": Object {
+                    "type": "string",
+                  },
+                },
+                "required": Array [
+                  "username",
+                  "password",
+                ],
+              },
+              "submit": [Function],
+            }
+          }
+          submitButton={
+            <Button
+              className="login-form__submit-button"
+              clicked={false}
+              ghost={false}
+              htmlType="submit"
+              loading={false}
+              prefixCls="ant-btn"
+              type="primary"
+            >
+              Log In
+            </Button>
+          }
+          wrappedComponentRef={[Function]}
+        >
+          <Form
+            hideRequiredMark={false}
+            layout="horizontal"
+            onSubmit={[Function]}
+            prefixCls="ant-form"
+          >
+            <form
+              className="ant-form ant-form-horizontal"
+              onSubmit={[Function]}
+            >
+              <Component>
+                <div
+                  className="schema-fields"
+                >
+                  <Component
+                    key="username"
+                    label="Username"
+                    name="username"
+                  >
+                    <FormItem
+                      colon={true}
+                      hasFeedback={false}
+                      key="username"
+                      label="Username"
+                      prefixCls="ant-form"
+                    >
+                      <Row
+                        className="ant-form-item"
+                        gutter={0}
+                      >
+                        <div
+                          className="ant-row ant-form-item"
+                        >
+                          <Col
+                            className="ant-form-item-label"
+                            key=".$label"
+                          >
+                            <div
+                              className="ant-form-item-label"
+                            >
+                              <label
+                                className="ant-form-item-required"
+                                htmlFor="username"
+                                onClick={[Function]}
+                                title="Username"
+                              >
+                                Username
+                              </label>
+                            </div>
+                          </Col>
+                          <Col
+                            className="ant-form-item-control-wrapper"
+                            key=".$wrapper"
+                          >
+                            <div
+                              className="ant-form-item-control-wrapper"
+                            >
+                              <div
+                                className="ant-form-item-control "
+                              >
+                                <Input
+                                  data-__meta={
+                                    Object {
+                                      "initialValue": undefined,
+                                      "leadingName": "username",
+                                      "name": "username",
+                                      "originalProps": Object {
+                                        "disabled": false,
+                                        "prefixCls": "ant-input",
+                                        "type": "text",
+                                      },
+                                      "ref": null,
+                                      "rules": Array [
+                                        Object {
+                                          "message": "Username is required",
+                                          "required": true,
+                                        },
+                                      ],
+                                      "trigger": "onChange",
+                                      "validate": Array [
+                                        Object {
+                                          "rules": Array [
+                                            Object {
+                                              "message": "Username is required",
+                                              "required": true,
+                                            },
+                                          ],
+                                          "trigger": Array [
+                                            "onChange",
+                                          ],
+                                        },
+                                      ],
+                                      "valuePropName": "value",
+                                    }
+                                  }
+                                  disabled={false}
+                                  id="username"
+                                  key=".0"
+                                  onChange={[Function]}
+                                  prefixCls="ant-input"
+                                  size="large"
+                                  type="text"
+                                >
+                                  <input
+                                    className="ant-input ant-input-lg"
+                                    data-__meta={
+                                      Object {
+                                        "initialValue": undefined,
+                                        "leadingName": "username",
+                                        "name": "username",
+                                        "originalProps": Object {
+                                          "disabled": false,
+                                          "prefixCls": "ant-input",
+                                          "type": "text",
+                                        },
+                                        "ref": null,
+                                        "rules": Array [
+                                          Object {
+                                            "message": "Username is required",
+                                            "required": true,
+                                          },
+                                        ],
+                                        "trigger": "onChange",
+                                        "validate": Array [
+                                          Object {
+                                            "rules": Array [
+                                              Object {
+                                                "message": "Username is required",
+                                                "required": true,
+                                              },
+                                            ],
+                                            "trigger": Array [
+                                              "onChange",
+                                            ],
+                                          },
+                                        ],
+                                        "valuePropName": "value",
+                                      }
+                                    }
+                                    disabled={false}
+                                    id="username"
+                                    onChange={[Function]}
+                                    onKeyDown={[Function]}
+                                    size="large"
+                                    type="text"
+                                    value=""
+                                  />
+                                </Input>
+                              </div>
+                            </div>
+                          </Col>
+                        </div>
+                      </Row>
+                    </FormItem>
+                  </Component>
+                  <Component
+                    key="password"
+                    label="Password"
+                    name="password"
+                  >
+                    <FormItem
+                      colon={true}
+                      hasFeedback={false}
+                      key="password"
+                      label="Password"
+                      prefixCls="ant-form"
+                    >
+                      <Row
+                        className="ant-form-item"
+                        gutter={0}
+                      >
+                        <div
+                          className="ant-row ant-form-item"
+                        >
+                          <Col
+                            className="ant-form-item-label"
+                            key=".$label"
+                          >
+                            <div
+                              className="ant-form-item-label"
+                            >
+                              <label
+                                className="ant-form-item-required"
+                                htmlFor="password"
+                                onClick={[Function]}
+                                title="Password"
+                              >
+                                Password
+                              </label>
+                            </div>
+                          </Col>
+                          <Col
+                            className="ant-form-item-control-wrapper"
+                            key=".$wrapper"
+                          >
+                            <div
+                              className="ant-form-item-control-wrapper"
+                            >
+                              <div
+                                className="ant-form-item-control "
+                              >
+                                <Input
+                                  data-__meta={
+                                    Object {
+                                      "initialValue": undefined,
+                                      "leadingName": "password",
+                                      "name": "password",
+                                      "originalProps": Object {
+                                        "disabled": false,
+                                        "prefixCls": "ant-input",
+                                        "type": "text",
+                                      },
+                                      "ref": null,
+                                      "rules": Array [
+                                        Object {
+                                          "message": "Password is required",
+                                          "required": true,
+                                        },
+                                      ],
+                                      "trigger": "onChange",
+                                      "validate": Array [
+                                        Object {
+                                          "rules": Array [
+                                            Object {
+                                              "message": "Password is required",
+                                              "required": true,
+                                            },
+                                          ],
+                                          "trigger": Array [
+                                            "onChange",
+                                          ],
+                                        },
+                                      ],
+                                      "valuePropName": "value",
+                                    }
+                                  }
+                                  disabled={false}
+                                  id="password"
+                                  key=".0"
+                                  onChange={[Function]}
+                                  prefixCls="ant-input"
+                                  size="large"
+                                  type="text"
+                                >
+                                  <input
+                                    className="ant-input ant-input-lg"
+                                    data-__meta={
+                                      Object {
+                                        "initialValue": undefined,
+                                        "leadingName": "password",
+                                        "name": "password",
+                                        "originalProps": Object {
+                                          "disabled": false,
+                                          "prefixCls": "ant-input",
+                                          "type": "text",
+                                        },
+                                        "ref": null,
+                                        "rules": Array [
+                                          Object {
+                                            "message": "Password is required",
+                                            "required": true,
+                                          },
+                                        ],
+                                        "trigger": "onChange",
+                                        "validate": Array [
+                                          Object {
+                                            "rules": Array [
+                                              Object {
+                                                "message": "Password is required",
+                                                "required": true,
+                                              },
+                                            ],
+                                            "trigger": Array [
+                                              "onChange",
+                                            ],
+                                          },
+                                        ],
+                                        "valuePropName": "value",
+                                      }
+                                    }
+                                    disabled={false}
+                                    id="password"
+                                    onChange={[Function]}
+                                    onKeyDown={[Function]}
+                                    size="large"
+                                    type="text"
+                                    value=""
+                                  />
+                                </Input>
+                              </div>
+                            </div>
+                          </Col>
+                        </div>
+                      </Row>
+                    </FormItem>
+                  </Component>
+                </div>
+              </Component>
+              <Button
+                className="login-form__submit-button"
+                clicked={false}
+                ghost={false}
+                htmlType="submit"
+                loading={false}
+                prefixCls="ant-btn"
+                type="primary"
+              >
+                <button
+                  className="ant-btn login-form__submit-button ant-btn-primary"
+                  onClick={[Function]}
+                  type="submit"
+                >
+                  <span
+                    key=".0"
+                  >
+                    Log In
+                  </span>
+                </button>
+              </Button>
+            </form>
+          </Form>
+        </FormComponent>
+      </Component>
+    </Form(WrappedComponent)>
+  </div>
+</LoginForm>
+`;

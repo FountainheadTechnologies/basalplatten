@@ -77,7 +77,7 @@ export class LoginForm extends React.Component<Props> {
 
   protected _renderSubmitButton() {
     if (this.props.submitButton === false) {
-      return;
+      return false;
     }
 
     const props: ButtonProps = {

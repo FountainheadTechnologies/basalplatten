@@ -23,12 +23,17 @@ export const childContextTypes = {
   defaultItemProps: PropTypes.object
 }
 
-export interface Props {
+export interface Props extends AntFormProps {
   resourceForm: HALForm;
   submitButton?: React.ReactElement<any> | false;
   onSuccess?: (result: Resource) => void;
   onFailure?: (error: Error) => void;
   defaultItemProps?: Partial<AntFormItemProps>;
+  /**
+   * This prop comes from Ant Form wrapper, but is not included in any of their
+   * type definitions.
+   */
+  wrappedComponentRef?: any;
 }
 
 export interface State {
@@ -40,7 +45,7 @@ export interface Context {
   defaultItemProps: Partial<AntFormItemProps>;
 }
 
-class FormComponent extends React.Component<Props & AntFormProps> {
+export class FormComponent extends React.Component<Props> {
   state: State = {
     submitting: false
   };
@@ -55,6 +60,8 @@ class FormComponent extends React.Component<Props & AntFormProps> {
       onFailure,
       children,
       form,
+      // Strip off `wrappedComponentRef` to prevent it causing an error on mount
+      wrappedComponentRef,
       ...formProps
     } = this.props;
 
@@ -104,12 +111,11 @@ class FormComponent extends React.Component<Props & AntFormProps> {
     })
 
   protected _onSubmit: React.EventHandler<React.FormEvent<any>> = e => {
-    console.log('SUBMIT');
     e.preventDefault();
 
     this.setState({ submitting: true });
 
-    this._validate()
+    return this._validate()
       .then(values => {
         return this.props.resourceForm.submit(values);
       })

@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default behaviour renders an Ant Form Item component with an Input element 1`] = `
+<Component
+  name="forename"
+>
+  <FormItem
+    colon={true}
+    hasFeedback={false}
+    key="forename"
+    label="Forename"
+    prefixCls="ant-form"
+  >
+    <Row
+      className="ant-form-item"
+      gutter={0}
+    >
+      <div
+        className="ant-row ant-form-item"
+      >
+        <Col
+          className="ant-form-item-label"
+          key=".$label"
+        >
+          <div
+            className="ant-form-item-label"
+          >
+            <label
+              className=""
+              htmlFor={null}
+              onClick={[Function]}
+              title="Forename"
+            >
+              Forename
+            </label>
+          </div>
+        </Col>
+        <Col
+          className="ant-form-item-control-wrapper"
+          key=".$wrapper"
+        >
+          <div
+            className="ant-form-item-control-wrapper"
+          >
+            <div
+              className="ant-form-item-control "
+            >
+              <Input
+                disabled={false}
+                key=".0"
+                prefixCls="ant-input"
+                size="large"
+                type="text"
+              >
+                <input
+                  className="ant-input ant-input-lg"
+                  disabled={false}
+                  onKeyDown={[Function]}
+                  size="large"
+                  type="text"
+                />
+              </Input>
+            </div>
+          </div>
+        </Col>
+      </div>
+    </Row>
+  </FormItem>
+</Component>
+`;
