@@ -22,8 +22,13 @@ export const DEFAULT_VENDORS_DEV = [
   'react-hot-loader'
 ];
 
+// Allow `isProd` to be set externally, just for testing
+let isProd = process.argv.indexOf('-p') > -1;
+export const setProd = (mode: boolean) => {
+  isProd = mode;
+}
+
 export const buildConfig = (appName: string, options = {}) => {
-  var isProd = process.argv.indexOf('-p') > -1;
   var stack = callsite();
   var caller = stack[1].getFileName();
   var context = dirname(caller);
