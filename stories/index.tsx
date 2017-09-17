@@ -2,13 +2,15 @@ import React from 'react';
 import promiseFinally from 'promise.prototype.finally';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Transition } from '@uirouter/react';
+import { UIRouter, UISref, Transition } from '@uirouter/react';
 import { Resource } from '@optics/hal-client';
 import { Input, Icon } from 'antd';
 
 import { CredentialStore } from '../src/CredentialStore';
 import { Login } from '../src/containers/Login';
 import { SchemaField } from '../src/components/SchemaField';
+import { buildRouter } from '../src/ui-router';
+import { stateParamsObserver } from '../src/hoc/stateParamsObserver';
 
 promiseFinally.shim();
 
@@ -113,4 +115,40 @@ storiesOf('Login', module)
         }}
       />
     )
+  });
+
+const router = buildRouter();
+router.stateRegistry.register({
+  name: 'main',
+  url: '/iframe.html',
+  params: {
+    page: 1,
+    query: null
+  }
+});
+
+const DebugComponent: React.StatelessComponent<any> = props => (
+  <div>
+    Raw Params:
+    <code>{JSON.stringify(props)}</code>
+
+    <UISref to="main" params={{ page: props.page - 1 }}>
+      <a>Previous page</a>
+    </UISref>
+
+    <UISref to="main" params={{ page: props.page + 1 }}>
+      <a>Next page</a>
+    </UISref>
+  </div>
+);
+
+const StateObservingDebugComponent = stateParamsObserver(DebugComponent);
+
+storiesOf('stateParamsObserver', module)
+  .add('Default', () => {
+    return (
+      <UIRouter router={router}>
+        <StateObservingDebugComponent />
+      </UIRouter>
+    );
   });

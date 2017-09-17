@@ -2,6 +2,8 @@
   "extends": "./tsconfig",
   "exclude": [
     "src/webpack",
+    "src/__mocks__",
+    "src/**/*.spec.*",
     "node_modules",
     "dist"
   ]
