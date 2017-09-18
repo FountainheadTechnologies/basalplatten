@@ -4,13 +4,15 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { UIRouter, UISref, Transition } from '@uirouter/react';
 import { Resource } from '@optics/hal-client';
-import { Input, Icon } from 'antd';
+import { Input, Icon, Table, LocaleProvider, Card, Button } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
 
 import { CredentialStore } from '../src/CredentialStore';
 import { Login } from '../src/containers/Login';
 import { SchemaField } from '../src/components/SchemaField';
 import { buildRouter } from '../src/ui-router';
 import { stateParamsObserver } from '../src/hoc/stateParamsObserver';
+import { stateParamsControlledTable } from '../src/hoc/stateParamsControlledTable';
 
 promiseFinally.shim();
 
@@ -123,32 +125,101 @@ router.stateRegistry.register({
   url: '/iframe.html',
   params: {
     page: 1,
-    query: null
+    where: null,
+    order: null
   }
 });
 
-const DebugComponent: React.StatelessComponent<any> = props => (
-  <div>
-    Raw Params:
+const DisplayStateParams: React.StatelessComponent<any> = props => (
+  <Card title="State Params">
     <code>{JSON.stringify(props)}</code>
+  </Card>
+);
 
+const Paginator: React.StatelessComponent<any> = props => (
+  <Button.Group>
     <UISref to="main" params={{ page: props.page - 1 }}>
-      <a>Previous page</a>
+      <Button icon="left-circle">Previous page</Button>
     </UISref>
 
     <UISref to="main" params={{ page: props.page + 1 }}>
-      <a>Next page</a>
+      <Button icon="right-circle">Next page</Button>
     </UISref>
-  </div>
+  </Button.Group>
 );
 
-const StateObservingDebugComponent = stateParamsObserver(DebugComponent);
+const StateObservingStateParams = stateParamsObserver(DisplayStateParams);
+
+const StateObservingPaginator = stateParamsObserver(Paginator);
+
+const StateParamsControlledTable = stateParamsControlledTable(Table as any);
 
 storiesOf('stateParamsObserver', module)
-  .add('Default', () => {
-    return (
-      <UIRouter router={router}>
-        <StateObservingDebugComponent />
-      </UIRouter>
-    );
-  });
+  .add('Default', () => (
+    <UIRouter router={router}>
+      <div>
+        <StateObservingStateParams />
+        <StateObservingPaginator />
+      </div>
+    </UIRouter>
+  ));
+
+storiesOf('stateParamsControlledTable', module)
+  .add('Default', () => (
+    <UIRouter router={router}>
+      <LocaleProvider locale={enUS}>
+        <div>
+          <StateObservingStateParams />
+          <StateParamsControlledTable
+            defaultPageSize={15}
+            columns={[{
+              title: 'Forename',
+              dataIndex: 'forename',
+              sorter: true
+            }, {
+              title: 'Surname',
+              dataIndex: 'surname',
+              sorter: true
+            }, {
+              title: 'Date of birth',
+              dataIndex: 'date_of_birth',
+              sorter: true
+            }, {
+              title: 'Active',
+              dataIndex: 'active',
+              filterMultiple: false,
+              filters: [{
+                text: 'Active',
+                value: 'true'
+              }, {
+                text: 'Inactive',
+                value: 'false'
+              }]
+            }]}
+          />
+
+          <Button.Group>
+            <UISref to="main" params={{ page: 1 }}>
+              <Button>Page 1</Button>
+            </UISref>
+
+            <UISref to="main" params={{ page: 2 }}>
+              <Button>Page 2</Button>
+            </UISref>
+          </Button.Group>
+
+          <UISref to="main" params={{ order: { forename: 'asc' } }}>
+            <Button>Order by forename</Button>
+          </UISref>
+
+          <UISref to="main" params={{ where: { active: 'true' } }}>
+            <Button>Filter by active: 'true'</Button>
+          </UISref>
+
+          <UISref to="main" params={{ page: null, where: null, order: null }}>
+            <Button>Reset all</Button>
+          </UISref>
+        </div>
+      </LocaleProvider>
+    </UIRouter>
+  ))
