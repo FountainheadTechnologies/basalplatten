@@ -278,6 +278,7 @@ storiesOf('Table', module)
           resource={mockApiResource}
           rel="customers"
           columns={COLUMNS}
+          wrappedComponentRef={ref => console.log(ref)}
         />
       </LocaleProvider>
     </UIRouter>

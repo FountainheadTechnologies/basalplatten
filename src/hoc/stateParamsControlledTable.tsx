@@ -18,8 +18,9 @@ const ORDER_TO_SORT = {
   desc: 'descend'
 };
 
-export interface Props {
+export interface Props<T> {
   defaultPageSize: number;
+  wrappedComponentRef?: (ref: React.Component<T>) => void;
 }
 
 export interface StateParamsProps {
@@ -87,8 +88,8 @@ export const sorterToOrderParam = (sorter: Sorter) => {
 }
 
 export const stateParamsControlledTable =
-  <P extends TableProps<any>>(Component: React.ComponentType<P>): React.ComponentClass<P & Props> => {
-    class StateParamsControlledTable extends React.Component<TableProps<any> & Props & StateParamsProps> {
+  <P extends TableProps<any>>(Component: React.ComponentClass<P>): React.ComponentClass<P & Props<P>> => {
+    class StateParamsControlledTable extends React.Component<TableProps<any> & Props<P> & StateParamsProps> {
       static contextTypes = {
         router: PropTypes.object
       }
@@ -116,15 +117,16 @@ export const stateParamsControlledTable =
 
         return (
           <Component
-            {...tableProps}
+            {...tableProps as P}
             columns={this.transformColumns(columns || [])}
             onChange={this.onChange}
             pagination={pagination}
+            ref={this.props.wrappedComponentRef}
           />
         );
       }
 
-      componentWillReceiveProps(nextProps: Props & StateParamsProps) {
+      componentWillReceiveProps(nextProps: Props<P> & StateParamsProps) {
         if (!nextProps.stateParams || !nextProps.stateParams.page) {
           return;
         }
