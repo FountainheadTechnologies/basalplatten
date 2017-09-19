@@ -107,6 +107,22 @@ it('does not update the component if mapped props have not changed', async () =>
   component.unmount();
 });
 
+it('maps props to wrapped component on mount', async () => {
+  await router.stateService.go('test', { page: 3 });
+
+  const innerComponent = updateCountedComponent();
+  const WrappedComponent = stateParamsObserver(innerComponent);
+  const component = mount(<WrappedComponent />, { context: { router } });
+
+  const props = component.find('InnerComponent').props();
+  expect(props).toEqual({
+    '#': null,
+    page: 3,
+    search: 'widgets',
+    showDeleted: true
+  });
+});
+
 it('throws an error if @ui-router/rx is not installed', () => {
   const innerComponent = updateCountedComponent();
   const WrappedComponent = stateParamsObserver(innerComponent);

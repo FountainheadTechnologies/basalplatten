@@ -35,7 +35,11 @@ export const stateParamsObserver =
       }
 
       state: State = {
-        mappedProps: {}
+        mappedProps: mapParamsToProps(
+          this.context.router.stateService.params,
+          this.props,
+          this.context
+        )
       }
 
       render() {
