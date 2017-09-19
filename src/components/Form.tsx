@@ -60,6 +60,7 @@ export class FormComponent extends React.Component<Props> {
       onFailure,
       children,
       form,
+      defaultItemProps,
       // Strip off `wrappedComponentRef` to prevent it causing an error on mount
       wrappedComponentRef,
       ...formProps
@@ -68,7 +69,7 @@ export class FormComponent extends React.Component<Props> {
     return (
       <AntForm
         {...formProps}
-        onSubmit={this._onSubmit}
+        onSubmit={this.submit}
       >
         {children}
         {this._renderSubmitButton()}
@@ -110,8 +111,10 @@ export class FormComponent extends React.Component<Props> {
         });
     })
 
-  protected _onSubmit: React.EventHandler<React.FormEvent<any>> = e => {
-    e.preventDefault();
+  submit = (event?: React.FormEvent<any>) => {
+    if (event) {
+      event.preventDefault();
+    }
 
     this.setState({ submitting: true });
 

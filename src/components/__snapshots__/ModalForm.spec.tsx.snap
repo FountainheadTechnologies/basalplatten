@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default behaviour renders a button 1`] = `
+<Button
+  clicked={false}
+  ghost={false}
+  loading={false}
+  onClick={[Function]}
+  prefixCls="ant-btn"
+/>
+`;

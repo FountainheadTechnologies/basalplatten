@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default behaviour renders a button 1`] = `
+<Button
+  clicked={false}
+  ghost={false}
+  label="Test"
+  loading={false}
+  onClick={[Function]}
+  prefixCls="ant-btn"
+>
+  Test
+</Button>
+`;
+
+exports[`when \`modal.closeButton\` is \`true\` only renders a close button in the modal footer 1`] = `
+<Button
+  clicked={false}
+  ghost={false}
+  loading={false}
+  onClick={[Function]}
+  prefixCls="ant-btn"
+  size="large"
+>
+  Close
+</Button>
+`;

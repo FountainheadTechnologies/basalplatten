@@ -16,6 +16,8 @@ import { ResourceTable } from '../src/components/ResourceTable';
 import { Table } from '../src/components/Table';
 import { stateParamsObserver } from '../src/hoc/stateParamsObserver';
 import { stateParamsControlledTable } from '../src/hoc/stateParamsControlledTable';
+import { buttonizedModal } from '../src/hoc/buttonizedModal';
+import { ModalForm } from '../src/components/ModalForm';
 
 promiseFinally.shim();
 
@@ -108,6 +110,22 @@ const mockCredentialStore = {
   }
 } as CredentialStore;
 
+const CustomFormFields: React.StatelessComponent = () => (
+  <div>
+    <SchemaField name="username" showLabel={false}>
+      <Input addonBefore={<Icon type="user" />} placeholder="User Name" />
+    </SchemaField>
+
+    <SchemaField name="password" showLabel={false}>
+      <Input addonBefore={<Icon type="lock" />} placeholder="Password" />
+    </SchemaField>
+
+    <SchemaField name="2fa_token" showLabel={false}>
+      <Input addonBefore={<Icon type="calculator" />} placeholder="2FA Token" />
+    </SchemaField>
+  </div>
+);
+
 storiesOf('Login', module)
   .add('Default', () => (
     <Login
@@ -119,29 +137,13 @@ storiesOf('Login', module)
     />
   ))
   .add('Customized fields', () => {
-    const CustomFields: React.StatelessComponent = () => (
-      <div>
-        <SchemaField name="username" showLabel={false}>
-          <Input addonBefore={<Icon type="user" />} placeholder="User Name" />
-        </SchemaField>
-
-        <SchemaField name="password" showLabel={false}>
-          <Input addonBefore={<Icon type="lock" />} placeholder="Password" />
-        </SchemaField>
-
-        <SchemaField name="2fa_token" showLabel={false}>
-          <Input addonBefore={<Icon type="calculator" />} placeholder="2FA Token" />
-        </SchemaField>
-      </div>
-    );
-
     return (
       <Login
         transition={mockTransition}
         resolves={{
           api: mockApiResource,
           credentialStore: mockCredentialStore,
-          fields: CustomFields
+          fields: CustomFormFields
         }}
       />
     )
@@ -279,4 +281,41 @@ storiesOf('Table', module)
         />
       </LocaleProvider>
     </UIRouter>
+  ));
+
+const SayHelloContent: React.StatelessComponent = () => (
+  <div>
+    <h1>Hello!</h1>
+    <p>Buttonized modal</p>
+  </div>
+);
+
+const SayHello = buttonizedModal(SayHelloContent, {
+  modal: {
+    title: 'Hello',
+    closeButton: true
+  },
+  button: {
+    label: 'Open'
+  }
+});
+
+storiesOf('buttonizedModal', module)
+  .add('Default', () => (
+    <LocaleProvider locale={enUS}>
+      <SayHello />
+    </LocaleProvider>
+  ));
+
+storiesOf('ModalizedForm', module)
+  .add('Default', () => (
+    <LocaleProvider locale={enUS}>
+      <ModalForm
+        form={{ resourceForm: mockApiResource.formNamed('tokens', 'create') }}
+        button={{ label: 'Login' }}
+        onSuccess={action('Modal success')}
+      >
+        <CustomFormFields />
+      </ModalForm>
+    </LocaleProvider>
   ));
