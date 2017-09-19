@@ -66,6 +66,10 @@ export const filtersToWhereParam = (columns: ColumnProps<any>[] | undefined, fil
     }
 
     const values = filters[key];
+    if (!values.length) {
+      return;
+    }
+
     result[key] = column.filterMultiple ? values : values[0];
   });
 
