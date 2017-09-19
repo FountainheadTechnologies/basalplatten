@@ -14,6 +14,10 @@ export type ParamMapper = <P extends any, C extends any>(params: Params, props: 
 const defaultParamMapper: ParamMapper = (params, props, context) =>
   ({ ...params, ...props as object } as typeof props);
 
+export interface Props<T> {
+  wrappedComponentRef?: (ref: React.ComponentType<T>) => void;
+}
+
 export interface State {
   mappedProps: any;
 }
@@ -24,7 +28,7 @@ export interface Context {
 
 export const stateParamsObserver =
   <P, SP>(Component: React.ComponentType<P & SP>, mapParamsToProps = defaultParamMapper) =>
-    class StateParamsObserver extends React.Component<P, State> {
+    class StateParamsObserver extends React.Component<P & Props<P>, State> {
       context: Context;
 
       paramsObserver: Subscription;
@@ -47,6 +51,7 @@ export const stateParamsObserver =
           <Component
             {...this.props}
             {...this.state.mappedProps}
+            ref={this.props.wrappedComponentRef}
           />
         );
       }
