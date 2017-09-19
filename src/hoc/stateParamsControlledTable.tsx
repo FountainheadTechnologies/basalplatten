@@ -18,7 +18,7 @@ const ORDER_TO_SORT = {
   desc: 'descend'
 };
 
-export interface Props<T> extends TableProps<T> {
+export interface Props {
   defaultPageSize: number;
 }
 
@@ -48,10 +48,6 @@ export interface State {
 export interface Context {
   router: UIRouterReact
 }
-
-export type StateParamsControlledTable =
-  <T>(Component: React.ComponentType<TableProps<T>>) =>
-    React.ComponentClass<Props<T>>;
 
 export const filtersToWhereParam = (columns: ColumnProps<any>[] | undefined, filters: { [key: string]: string | string[] }) => {
   if (!columns) {
@@ -86,9 +82,9 @@ export const sorterToOrderParam = (sorter: Sorter) => {
   }
 }
 
-export const stateParamsControlledTable: StateParamsControlledTable =
-  (Component) => {
-    class StateParamsControlledTable extends React.Component<Props<any> & StateParamsProps> {
+export const stateParamsControlledTable =
+  <P extends TableProps<any>>(Component: React.ComponentType<P>): React.ComponentClass<P & Props> => {
+    class StateParamsControlledTable extends React.Component<TableProps<any> & Props & StateParamsProps> {
       static contextTypes = {
         router: PropTypes.object
       }
@@ -124,7 +120,7 @@ export const stateParamsControlledTable: StateParamsControlledTable =
         );
       }
 
-      componentWillReceiveProps(nextProps: Props<any> & StateParamsProps) {
+      componentWillReceiveProps(nextProps: Props & StateParamsProps) {
         if (!nextProps.stateParams || !nextProps.stateParams.page) {
           return;
         }
@@ -216,7 +212,7 @@ export const stateParamsControlledTable: StateParamsControlledTable =
     }
 
     return stateParamsObserver(
-      StateParamsControlledTable,
+      StateParamsControlledTable as any,
       (stateParams, props: any) => ({
         ...props,
         stateParams

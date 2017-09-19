@@ -4,7 +4,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { UIRouter, UISref, Transition } from '@uirouter/react';
 import { Resource } from '@optics/hal-client';
-import { Input, Icon, Table, LocaleProvider, Card, Button } from 'antd';
+import { Input, Icon, Table as AntTable, LocaleProvider, Card, Button } from 'antd';
+import { TableProps } from 'antd/lib/table/Table';
 import enUS from 'antd/lib/locale-provider/en_US';
 
 import { buildRouter } from '../src/ui-router';
@@ -12,6 +13,7 @@ import { CredentialStore } from '../src/CredentialStore';
 import { Login } from '../src/containers/Login';
 import { SchemaField } from '../src/components/SchemaField';
 import { ResourceTable } from '../src/components/ResourceTable';
+import { Table } from '../src/components/Table';
 import { stateParamsObserver } from '../src/hoc/stateParamsObserver';
 import { stateParamsControlledTable } from '../src/hoc/stateParamsControlledTable';
 
@@ -146,6 +148,10 @@ storiesOf('Login', module)
   });
 
 const router = buildRouter();
+router.transitionService.onStart({}, transition => {
+  action('transitionService.onStart')(transition.params('to'))
+});
+
 router.stateRegistry.register({
   name: 'main',
   url: '/iframe.html',
@@ -178,7 +184,7 @@ const StateObservingStateParams = stateParamsObserver(DisplayStateParams);
 
 const StateObservingPaginator = stateParamsObserver(Paginator);
 
-const StateParamsControlledTable = stateParamsControlledTable(Table as any);
+const StateParamsControlledTable = stateParamsControlledTable(AntTable as any as React.ComponentClass<TableProps<any>>);
 
 const COLUMNS = [{
   title: 'Forename',
@@ -259,4 +265,18 @@ storiesOf('ResourceTable', module)
         pagination={{ pageSize: 5, total: 0 }}
       />
     </LocaleProvider>
+  ));
+
+storiesOf('Table', module)
+  .add('Default', () => (
+    <UIRouter router={router}>
+      <LocaleProvider locale={enUS}>
+        <Table
+          defaultPageSize={15}
+          resource={mockApiResource}
+          rel="customers"
+          columns={COLUMNS}
+        />
+      </LocaleProvider>
+    </UIRouter>
   ));
