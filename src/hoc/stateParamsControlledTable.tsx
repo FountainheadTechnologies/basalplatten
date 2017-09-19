@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { UIRouterReact } from '@uirouter/react';
-import { TableProps, TableColumnConfig } from 'antd/lib/table/Table';
+import { TableProps } from 'antd/lib/table/Table';
+import { ColumnProps } from 'antd/lib/table/Column';
 import { PaginationProps } from 'antd/lib/pagination';
 import 'antd/lib/table/style';
 
@@ -34,7 +35,7 @@ export interface StateParamsProps {
 }
 
 export interface Sorter {
-  column: TableColumnConfig<any>;
+  column: ColumnProps<any>;
   columnKey?: string;
   field: string;
   order: 'ascend' | 'descend';
@@ -51,6 +52,39 @@ export interface Context {
 export type StateParamsControlledTable =
   <T>(Component: React.ComponentType<TableProps<T>>) =>
     React.ComponentClass<Props<T>>;
+
+export const filtersToWhereParam = (columns: ColumnProps<any>[] | undefined, filters: { [key: string]: string | string[] }) => {
+  if (!columns) {
+    return;
+  }
+
+  const result: { [key: string]: string | string[] } = {};
+
+  Object.keys(filters).forEach(key => {
+    const column = columns.find(column => (
+      column.key === key || column.dataIndex === key
+    ));
+
+    if (!column) {
+      return;
+    }
+
+    const values = filters[key];
+    result[key] = column.filterMultiple ? values : values[0];
+  });
+
+  return result;
+}
+
+export const sorterToOrderParam = (sorter: Sorter) => {
+  if (!sorter.columnKey) {
+    return;
+  }
+
+  return {
+    [sorter.columnKey]: SORT_TO_ORDER[sorter.order]
+  }
+}
 
 export const stateParamsControlledTable: StateParamsControlledTable =
   (Component) => {
@@ -117,59 +151,28 @@ export const stateParamsControlledTable: StateParamsControlledTable =
        * `filtersToWhereParam` uses correct type.
        */
       onChange = (pagination: PaginationProps, filters: any, sorter: Sorter) => {
+        const { columns, onChange } = this.props;
+
         this.context.router.stateService
           .go('.', {
             page: pagination.current,
-            where: this.filtersToWhereParam(filters),
-            order: this.sorterToOrderParam(sorter)
+            where: filtersToWhereParam(columns, filters),
+            order: sorterToOrderParam(sorter)
           });
 
-        if (this.props.onChange) {
-          this.props.onChange(pagination, filters, sorter);
+        if (onChange) {
+          onChange(pagination, filters, sorter);
         }
       }
 
-      filtersToWhereParam = (filters: { [key: string]: string | string[] }) => {
-        const result: { [key: string]: string | string[] } = {};
-
-        Object.keys(filters).forEach(key => {
-          if (!this.props.columns) {
-            return;
-          }
-
-          const column = this.props.columns.find(column => (
-            column.key === key || column.dataIndex === key
-          ));
-
-          if (!column) {
-            return;
-          }
-
-          const values = filters[key];
-          result[key] = column.filterMultiple ? values : values[0];
-        });
-
-        return result;
-      }
-
-      sorterToOrderParam = (sorter: Sorter) => {
-        if (!sorter.columnKey) {
-          return;
-        }
-
-        return {
-          [sorter.columnKey]: SORT_TO_ORDER[sorter.order]
-        }
-      }
-
-      transformColumns = (columns: TableColumnConfig<any>[]): TableColumnConfig<any>[] =>
+      transformColumns = (columns: ColumnProps<any>[]): ColumnProps<any>[] =>
         columns.map(column => ({
           ...column,
           filteredValue: this.whereParamToFilteredValue(column),
           sortOrder: this.orderParamToSortOrder(column)
         }))
 
-      whereParamToFilteredValue = (column: TableColumnConfig<any>) => {
+      whereParamToFilteredValue = (column: ColumnProps<any>) => {
         if (!this.props.stateParams) {
           return [];
         }
@@ -190,7 +193,7 @@ export const stateParamsControlledTable: StateParamsControlledTable =
         return value instanceof Array ? value : [value];
       }
 
-      orderParamToSortOrder = (column: TableColumnConfig<any>) => {
+      orderParamToSortOrder = (column: ColumnProps<any>) => {
         if (!this.props.stateParams) {
           return;
         }

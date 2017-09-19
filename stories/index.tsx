@@ -7,10 +7,11 @@ import { Resource } from '@optics/hal-client';
 import { Input, Icon, Table, LocaleProvider, Card, Button } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 
+import { buildRouter } from '../src/ui-router';
 import { CredentialStore } from '../src/CredentialStore';
 import { Login } from '../src/containers/Login';
 import { SchemaField } from '../src/components/SchemaField';
-import { buildRouter } from '../src/ui-router';
+import { ResourceTable } from '../src/components/ResourceTable';
 import { stateParamsObserver } from '../src/hoc/stateParamsObserver';
 import { stateParamsControlledTable } from '../src/hoc/stateParamsControlledTable';
 
@@ -41,6 +42,31 @@ const mockApiResource = {
   },
 
   properties: {},
+
+  link(rel: string) {
+    return {
+      fetch: (params: any) => new Promise((resolve, reject) => {
+        action('Fetching resource')({ rel, params });
+
+        const response = {
+          properties: {
+            total: 20
+          },
+
+          embedded: (name: string) =>
+            Array(5).fill({
+              properties: {
+                forename: 'Test',
+                surname: 'Person',
+                active: true
+              }
+            })
+        };
+
+        setTimeout(() => resolve(response), 250);
+      })
+    }
+  },
 
   formNamed(rel: string, name: string) {
     return {
@@ -154,6 +180,28 @@ const StateObservingPaginator = stateParamsObserver(Paginator);
 
 const StateParamsControlledTable = stateParamsControlledTable(Table as any);
 
+const COLUMNS = [{
+  title: 'Forename',
+  dataIndex: 'properties.forename',
+  sorter: true
+}, {
+  title: 'Surname',
+  dataIndex: 'properties.surname',
+  sorter: true
+}, {
+  title: 'Active',
+  dataIndex: 'properties.active',
+  render: (value: boolean) => value ? 'Active' : 'Inactive',
+  filterMultiple: false,
+  filters: [{
+    text: 'Active',
+    value: 'true'
+  }, {
+    text: 'Inactive',
+    value: 'false'
+  }]
+}];
+
 storiesOf('stateParamsObserver', module)
   .add('Default', () => (
     <UIRouter router={router}>
@@ -172,30 +220,7 @@ storiesOf('stateParamsControlledTable', module)
           <StateObservingStateParams />
           <StateParamsControlledTable
             defaultPageSize={15}
-            columns={[{
-              title: 'Forename',
-              dataIndex: 'forename',
-              sorter: true
-            }, {
-              title: 'Surname',
-              dataIndex: 'surname',
-              sorter: true
-            }, {
-              title: 'Date of birth',
-              dataIndex: 'date_of_birth',
-              sorter: true
-            }, {
-              title: 'Active',
-              dataIndex: 'active',
-              filterMultiple: false,
-              filters: [{
-                text: 'Active',
-                value: 'true'
-              }, {
-                text: 'Inactive',
-                value: 'false'
-              }]
-            }]}
+            columns={COLUMNS}
           />
 
           <Button.Group>
@@ -223,3 +248,15 @@ storiesOf('stateParamsControlledTable', module)
       </LocaleProvider>
     </UIRouter>
   ))
+
+storiesOf('ResourceTable', module)
+  .add('Default', () => (
+    <LocaleProvider locale={enUS}>
+      <ResourceTable
+        resource={mockApiResource}
+        rel="customers"
+        columns={COLUMNS}
+        pagination={{ pageSize: 5, total: 0 }}
+      />
+    </LocaleProvider>
+  ));

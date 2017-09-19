@@ -9,6 +9,8 @@ exports[`default behaviour renders a LoginForm 1`] = `
           "headers": Object {},
         },
         "formNamed": [Function],
+        "link": [Function],
+        "linkNamed": [Function],
         "meta": Object {},
         "properties": Object {},
       },

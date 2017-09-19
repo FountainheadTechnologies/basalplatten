@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default behaviour renders an Ant Table 1`] = `
+<ResourceTable
+  rel="widgets"
+  resource={
+    Object {
+      "config": Object {
+        "headers": Object {},
+      },
+      "formNamed": [Function],
+      "link": [Function],
+      "linkNamed": [Function],
+      "meta": Object {},
+      "properties": Object {},
+    }
+  }
+>
+  <Table
+    bordered={false}
+    className=""
+    dataSource={Array []}
+    indentSize={20}
+    loading={true}
+    locale={Object {}}
+    onChange={[Function]}
+    pagination={
+      Object {
+        "total": 0,
+      }
+    }
+    prefixCls="ant-table"
+    rowKey="key"
+    rowSelection={null}
+    showHeader={true}
+    size="large"
+    useFixedHeader={false}
+  >
+    <div
+      className="ant-table-wrapper"
+    >
+      <Spin
+        className="ant-table-without-pagination ant-table-spin-holder"
+        prefixCls="ant-spin"
+        size="default"
+        spinning={true}
+        wrapperClassName=""
+      >
+        <RcAnimate
+          className="ant-spin-nested-loading"
+          component="div"
+          style={null}
+          transitionName="fade"
+        >
+          <div>
+            div
+          </div>
+        </RcAnimate>
+      </Spin>
+    </div>
+  </Table>
+</ResourceTable>
+`;
