@@ -80,7 +80,7 @@ export class ResourceTable extends React.Component<Props, State> {
     return link.fetch(params)
       .then((result: Resource) => {
         this.setState({
-          total: result.properties.total,
+          total: result.properties.count,
           rows: result.embedded(embedded || rel) as Resource[]
         })
       })

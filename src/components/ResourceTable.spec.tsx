@@ -43,7 +43,7 @@ describe('default behaviour', () => {
     const result = {
       embedded: jest.fn((name: string) => widgets),
       properties: {
-        total: widgets.length
+        count: widgets.length
       }
     }
 
