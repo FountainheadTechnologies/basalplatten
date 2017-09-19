@@ -6,8 +6,14 @@ import moment from 'moment';
 import AntForm from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import 'antd/lib/input/style';
+import InputNumber from 'antd/lib/input-number';
+import 'antd/lib/input-number/style';
 import Switch from 'antd/lib/switch';
 import 'antd/lib/switch/style';
+import DatePicker from 'antd/lib/date-picker';
+import 'antd/lib/date-picker/style';
+import Select from 'antd/lib/select';
+import 'antd/lib/select/style';
 
 import { WrappedFormUtils, GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import { Property } from '@optics/hal-client/dist/Form';
@@ -59,9 +65,29 @@ export const SchemaField: React.StatelessComponent<Props> = (props, context: Con
   );
 }
 
-const inputElement = (property: Property): React.ReactNode => (
-  <Input />
-);
+const inputElement = (property: Property): React.ReactNode => {
+  if (property.type === 'number') {
+    return <InputNumber />;
+  }
+
+  if (property.format === 'date-time') {
+    return <DatePicker />;
+  }
+
+  if (property.type === 'boolean') {
+    return <Switch />
+  }
+
+  if (property.enum) {
+    const options = property.enum.map(value => (
+      <Select.Option key={value}>{titleCase(value)}</Select.Option>
+    ));
+
+    return <Select>{options}</Select>;
+  }
+
+  return <Input />;
+}
 
 const fieldDecoratorOptions =
   (props: Props, context: Context, element: React.ReactNode, label?: string): GetFieldDecoratorOptions => {

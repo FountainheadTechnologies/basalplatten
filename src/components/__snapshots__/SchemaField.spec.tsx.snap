@@ -68,3 +68,373 @@ exports[`default behaviour renders an Ant Form Item component with an Input elem
   </FormItem>
 </Component>
 `;
+
+exports[`when schema type is \`enum\` renders a \`<Select/>\` element containing possible values 1`] = `
+Array [
+  <Select
+    choiceTransitionName="zoom"
+    key=".0"
+    prefixCls="ant-select"
+    showSearch={false}
+    size="large"
+    transitionName="slide-up"
+  >
+    <Select
+      allowClear={false}
+      backfill={false}
+      choiceTransitionName="zoom"
+      className="ant-select-lg"
+      defaultActiveFirstOption={true}
+      defaultOpen={false}
+      dropdownMatchSelectWidth={true}
+      dropdownMenuStyle={Object {}}
+      dropdownStyle={Object {}}
+      labelInValue={false}
+      notFoundContent="无匹配结果"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onDeselect={[Function]}
+      onFocus={[Function]}
+      onSearch={[Function]}
+      onSelect={[Function]}
+      optionFilterProp="value"
+      optionLabelProp="children"
+      placeholder=""
+      prefixCls="ant-select"
+      showArrow={true}
+      showSearch={false}
+      transitionName="slide-up"
+    >
+      <SelectTrigger
+        defaultActiveFirstOption={true}
+        dropdownMatchSelectWidth={true}
+        dropdownMenuStyle={Object {}}
+        dropdownStyle={Object {}}
+        inputValue=""
+        onDropdownVisibleChange={[Function]}
+        onMenuDeselect={[Function]}
+        onMenuSelect={[Function]}
+        onPopupFocus={[Function]}
+        options={Array []}
+        prefixCls="ant-select"
+        showSearch={false}
+        transitionName="slide-up"
+        value={Array []}
+        visible={false}
+      >
+        <Trigger
+          action={Array []}
+          afterPopupVisibleChange={[Function]}
+          blurDelay={0.15}
+          builtinPlacements={
+            Object {
+              "bottomLeft": Object {
+                "offset": Array [
+                  0,
+                  4,
+                ],
+                "overflow": Object {
+                  "adjustX": 0,
+                  "adjustY": 1,
+                },
+                "points": Array [
+                  "tl",
+                  "bl",
+                ],
+              },
+              "topLeft": Object {
+                "offset": Array [
+                  0,
+                  -4,
+                ],
+                "overflow": Object {
+                  "adjustX": 0,
+                  "adjustY": 1,
+                },
+                "points": Array [
+                  "bl",
+                  "tl",
+                ],
+              },
+            }
+          }
+          defaultActiveFirstOption={true}
+          defaultPopupVisible={false}
+          destroyPopupOnHide={false}
+          dropdownMatchSelectWidth={true}
+          dropdownMenuStyle={Object {}}
+          dropdownStyle={Object {}}
+          focusDelay={0}
+          getDocument={[Function]}
+          getPopupClassNameFromAlign={[Function]}
+          hideAction={
+            Array [
+              "click",
+            ]
+          }
+          inputValue=""
+          mask={false}
+          maskClosable={true}
+          mouseEnterDelay={0}
+          mouseLeaveDelay={0.1}
+          onDropdownVisibleChange={[Function]}
+          onMenuDeselect={[Function]}
+          onMenuSelect={[Function]}
+          onPopupAlign={[Function]}
+          onPopupVisibleChange={[Function]}
+          options={Array []}
+          popup={
+            <DropdownMenu
+              defaultActiveFirstOption={true}
+              dropdownMenuStyle={Object {}}
+              firstActiveValue={undefined}
+              inputValue=""
+              menuItems={Array []}
+              multiple={undefined}
+              onMenuDeselect={[Function]}
+              onMenuSelect={[Function]}
+              onPopupFocus={[Function]}
+              prefixCls="ant-select-dropdown"
+              value={Array []}
+              visible={false}
+            />
+          }
+          popupAlign={Object {}}
+          popupClassName="ant-select-dropdown--single"
+          popupPlacement="bottomLeft"
+          popupStyle={Object {}}
+          popupTransitionName="slide-up"
+          popupVisible={false}
+          prefixCls="ant-select-dropdown"
+          showAction={
+            Array [
+              "click",
+            ]
+          }
+          showSearch={false}
+          transitionName="slide-up"
+          value={Array []}
+          visible={false}
+        >
+          <div
+            className="ant-select-lg ant-select ant-select-enabled"
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onMouseDown={[Function]}
+            onTouchStart={[Function]}
+          >
+            <div
+              aria-autocomplete="list"
+              aria-expanded={false}
+              aria-haspopup="true"
+              className="ant-select-selection
+            ant-select-selection--single"
+              key="selection"
+              onKeyDown={[Function]}
+              role="combobox"
+              tabIndex={0}
+            >
+              <div
+                className="ant-select-selection__rendered"
+              />
+              <span
+                className="ant-select-arrow"
+                key="arrow"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "WebkitUserSelect": "none",
+                    "userSelect": "none",
+                  }
+                }
+                unselectable="unselectable"
+              >
+                <b />
+              </span>
+            </div>
+          </div>
+        </Trigger>
+      </SelectTrigger>
+    </Select>
+  </Select>,
+  <Select
+    allowClear={false}
+    backfill={false}
+    choiceTransitionName="zoom"
+    className="ant-select-lg"
+    defaultActiveFirstOption={true}
+    defaultOpen={false}
+    dropdownMatchSelectWidth={true}
+    dropdownMenuStyle={Object {}}
+    dropdownStyle={Object {}}
+    labelInValue={false}
+    notFoundContent="无匹配结果"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onDeselect={[Function]}
+    onFocus={[Function]}
+    onSearch={[Function]}
+    onSelect={[Function]}
+    optionFilterProp="value"
+    optionLabelProp="children"
+    placeholder=""
+    prefixCls="ant-select"
+    showArrow={true}
+    showSearch={false}
+    transitionName="slide-up"
+  >
+    <SelectTrigger
+      defaultActiveFirstOption={true}
+      dropdownMatchSelectWidth={true}
+      dropdownMenuStyle={Object {}}
+      dropdownStyle={Object {}}
+      inputValue=""
+      onDropdownVisibleChange={[Function]}
+      onMenuDeselect={[Function]}
+      onMenuSelect={[Function]}
+      onPopupFocus={[Function]}
+      options={Array []}
+      prefixCls="ant-select"
+      showSearch={false}
+      transitionName="slide-up"
+      value={Array []}
+      visible={false}
+    >
+      <Trigger
+        action={Array []}
+        afterPopupVisibleChange={[Function]}
+        blurDelay={0.15}
+        builtinPlacements={
+          Object {
+            "bottomLeft": Object {
+              "offset": Array [
+                0,
+                4,
+              ],
+              "overflow": Object {
+                "adjustX": 0,
+                "adjustY": 1,
+              },
+              "points": Array [
+                "tl",
+                "bl",
+              ],
+            },
+            "topLeft": Object {
+              "offset": Array [
+                0,
+                -4,
+              ],
+              "overflow": Object {
+                "adjustX": 0,
+                "adjustY": 1,
+              },
+              "points": Array [
+                "bl",
+                "tl",
+              ],
+            },
+          }
+        }
+        defaultActiveFirstOption={true}
+        defaultPopupVisible={false}
+        destroyPopupOnHide={false}
+        dropdownMatchSelectWidth={true}
+        dropdownMenuStyle={Object {}}
+        dropdownStyle={Object {}}
+        focusDelay={0}
+        getDocument={[Function]}
+        getPopupClassNameFromAlign={[Function]}
+        hideAction={
+          Array [
+            "click",
+          ]
+        }
+        inputValue=""
+        mask={false}
+        maskClosable={true}
+        mouseEnterDelay={0}
+        mouseLeaveDelay={0.1}
+        onDropdownVisibleChange={[Function]}
+        onMenuDeselect={[Function]}
+        onMenuSelect={[Function]}
+        onPopupAlign={[Function]}
+        onPopupVisibleChange={[Function]}
+        options={Array []}
+        popup={
+          <DropdownMenu
+            defaultActiveFirstOption={true}
+            dropdownMenuStyle={Object {}}
+            firstActiveValue={undefined}
+            inputValue=""
+            menuItems={Array []}
+            multiple={undefined}
+            onMenuDeselect={[Function]}
+            onMenuSelect={[Function]}
+            onPopupFocus={[Function]}
+            prefixCls="ant-select-dropdown"
+            value={Array []}
+            visible={false}
+          />
+        }
+        popupAlign={Object {}}
+        popupClassName="ant-select-dropdown--single"
+        popupPlacement="bottomLeft"
+        popupStyle={Object {}}
+        popupTransitionName="slide-up"
+        popupVisible={false}
+        prefixCls="ant-select-dropdown"
+        showAction={
+          Array [
+            "click",
+          ]
+        }
+        showSearch={false}
+        transitionName="slide-up"
+        value={Array []}
+        visible={false}
+      >
+        <div
+          className="ant-select-lg ant-select ant-select-enabled"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseDown={[Function]}
+          onTouchStart={[Function]}
+        >
+          <div
+            aria-autocomplete="list"
+            aria-expanded={false}
+            aria-haspopup="true"
+            className="ant-select-selection
+            ant-select-selection--single"
+            key="selection"
+            onKeyDown={[Function]}
+            role="combobox"
+            tabIndex={0}
+          >
+            <div
+              className="ant-select-selection__rendered"
+            />
+            <span
+              className="ant-select-arrow"
+              key="arrow"
+              onClick={[Function]}
+              style={
+                Object {
+                  "WebkitUserSelect": "none",
+                  "userSelect": "none",
+                }
+              }
+              unselectable="unselectable"
+            >
+              <b />
+            </span>
+          </div>
+        </div>
+      </Trigger>
+    </SelectTrigger>
+  </Select>,
+]
+`;

@@ -127,3 +127,36 @@ describe('when `props.showLabel` is false', () => {
     expect(schemaField.find('FormItem').prop('label')).toBeUndefined();
   });
 });
+
+describe('when schema type is `number`', () => {
+  const schemaField = mount(<SchemaField name="credits" />, { context: updateContext });
+
+  it('renders an `<InputNumber/>` element', () => {
+    expect(schemaField.find('InputNumber').exists()).toBe(true);
+  });
+});
+
+describe('when schema type is `date-time`', () => {
+  const schemaField = mount(<SchemaField name="date_of_birth" />, { context: updateContext });
+
+  it('renders a `<DatePicker/>` element', () => {
+    expect(schemaField.find('PickerWrapper').exists()).toBe(true);
+  });
+});
+
+describe('when schema type is `boolean`', () => {
+  const schemaField = mount(<SchemaField name="enabled" />, { context: updateContext });
+
+  it('renders a `<Switch/>` element', () => {
+    expect(schemaField.find('Switch').exists()).toBe(true);
+  });
+});
+
+describe('when schema type is `enum`', () => {
+  const schemaField = mount(<SchemaField name="favourite_colour" />, { context: updateContext });
+
+  it('renders a `<Select/>` element containing possible values', () => {
+    expect(schemaField.find('Select').exists()).toBe(true);
+    expect(schemaField.find('Select')).toMatchSnapshot();
+  });
+});
