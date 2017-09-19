@@ -19,6 +19,7 @@ describe('default behaviour', () => {
 
 describe('wrapped component behaviour', () => {
   let _okHandler;
+  const onSuccess = jest.fn();
   const setWorking = jest.fn();
   const setVisible = jest.fn();
   const setOkHandler = jest.fn(handler => {
@@ -31,6 +32,7 @@ describe('wrapped component behaviour', () => {
       setWorking={setWorking}
       setVisible={setVisible}
       setOkHandler={setOkHandler}
+      onSuccess={onSuccess}
     />
   );
 
@@ -61,5 +63,6 @@ describe('wrapped component behaviour', () => {
   it('hides the form when submission succeeded', () => {
     root.props().onSuccess();
     expect(setVisible).toHaveBeenCalledWith(false);
+    expect(onSuccess).toHaveBeenCalled();
   });
 });

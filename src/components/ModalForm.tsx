@@ -59,8 +59,12 @@ export class ModalFormComponent extends React.Component<Props & InjectedProps> {
       });
   }
 
-  onSuccess = () => {
+  onSuccess = (resource: any) => {
     this.props.setVisible(false);
+
+    if (this.props.onSuccess) {
+      this.props.onSuccess(resource);
+    }
   }
 }
 
