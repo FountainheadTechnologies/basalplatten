@@ -99,7 +99,7 @@ export const stateParamsControlledTable =
       state: State = {
         pagination: {
           pageSize: this.props.defaultPageSize,
-          current: 1,
+          current: this.props.stateParams.page || 1,
           total: 0
         }
       }

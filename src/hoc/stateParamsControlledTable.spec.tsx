@@ -108,19 +108,23 @@ it('maps `order` State Param to Column options', async () => {
 });
 
 it('maps `page` State Param to Pagination options', async () => {
+  await router.stateService.go('.', {
+    page: 2
+  });
+
   const root = mount((
     <ControlledTable columns={COLUMNS} />
   ), { context: { router } });
 
   const paginationBeforeTransition = root.find('Table').prop('pagination');
-  expect(paginationBeforeTransition.current).toBe(1);
+  expect(paginationBeforeTransition.current).toBe(2);
 
   await router.stateService.go('.', {
-    page: 2
+    page: 3
   });
 
   const paginationAfterTransition = root.find('Table').prop('pagination');
-  expect(paginationAfterTransition.current).toBe(2);
+  expect(paginationAfterTransition.current).toBe(3);
 });
 
 it('changes State Params when table controls change', () => {
