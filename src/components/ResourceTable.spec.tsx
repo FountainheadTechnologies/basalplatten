@@ -9,6 +9,10 @@ promiseFinally.shim();
 
 beforeEach(() => fetch.mockClear());
 
+const COLUMNS = [{
+  key: 'name'
+}];
+
 describe('default behaviour', () => {
   let root;
 
@@ -16,6 +20,7 @@ describe('default behaviour', () => {
     root = mount((
       <ResourceTable
         resource={api}
+        columns={COLUMNS}
         rel="widgets"
       />
     ));
@@ -76,6 +81,7 @@ describe('default behaviour', () => {
     it('re-fetches data with new params', () => {
       expect(fetch).toHaveBeenCalledWith({ rel: 'widgets' }, {
         page: 3,
+        where: {},
         order: {
           name: 'asc'
         }
@@ -88,10 +94,60 @@ describe('default behaviour', () => {
 
       expect(fetch).toHaveBeenCalledWith({ rel: 'widgets' }, {
         page: 3,
+        where: {},
         order: {
           name: 'asc'
         }
       });
+    });
+  });
+
+  describe('when columns prop changes', () => {
+    it('fetches with new params', () => {
+      fetch.mockClear();
+
+      root.setProps({
+        columns: [{
+          key: 'name',
+          filteredValue: ['test'],
+          sortOrder: 'ascend'
+        }]
+      });
+
+      expect(fetch).toHaveBeenCalledWith(({
+        rel: 'widgets'
+      }), ({
+        where: {
+          name: 'test'
+        },
+        order: {
+          name: 'asc'
+        }
+      }));
+    });
+  });
+
+  describe('when columns prop does not change', () => {
+    it('does not trigger another fetch', () => {
+      root.setProps({
+        columns: [{
+          key: 'name',
+          filteredValue: ['test'],
+          sortOrder: 'ascend'
+        }]
+      });
+
+      fetch.mockClear();
+
+      root.setProps({
+        columns: [{
+          key: 'name',
+          filteredValue: ['test'],
+          sortOrder: 'ascend'
+        }]
+      });
+
+      expect(fetch).not.toHaveBeenCalled();
     });
   });
 });

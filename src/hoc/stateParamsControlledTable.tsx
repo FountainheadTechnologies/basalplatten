@@ -8,12 +8,12 @@ import 'antd/lib/table/style';
 
 import { stateParamsObserver } from '../hoc/stateParamsObserver';
 
-const SORT_TO_ORDER = {
+export const SORT_TO_ORDER = {
   ascend: 'asc',
   descend: 'desc'
 };
 
-const ORDER_TO_SORT = {
+export const ORDER_TO_SORT = {
   asc: 'ascend',
   desc: 'descend'
 };
@@ -99,7 +99,7 @@ export const stateParamsControlledTable =
       state: State = {
         pagination: {
           pageSize: this.props.defaultPageSize,
-          current: this.props.stateParams.page || 1,
+          current: this.props.stateParams && this.props.stateParams.page || 1,
           total: 0
         }
       }

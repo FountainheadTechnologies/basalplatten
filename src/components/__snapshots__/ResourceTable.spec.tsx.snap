@@ -2,6 +2,13 @@
 
 exports[`default behaviour renders an Ant Table 1`] = `
 <ResourceTable
+  columns={
+    Array [
+      Object {
+        "key": "name",
+      },
+    ]
+  }
   rel="widgets"
   resource={
     Object {
@@ -19,6 +26,13 @@ exports[`default behaviour renders an Ant Table 1`] = `
   <Table
     bordered={false}
     className=""
+    columns={
+      Array [
+        Object {
+          "key": "name",
+        },
+      ]
+    }
     dataSource={Array []}
     indentSize={20}
     loading={true}
