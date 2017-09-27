@@ -100,6 +100,7 @@ export class ResourceTable extends React.PureComponent<Props, State> {
 
     return (
       <Table
+        rowKey={this._rowKey}
         {...tableProps}
         pagination={this.pagination()}
         loading={loading}
@@ -185,5 +186,13 @@ export class ResourceTable extends React.PureComponent<Props, State> {
     }
 
     return params;
+  }
+
+  protected _rowKey = (resource: Resource) => {
+    if (resource.hasLink('self')) {
+      return resource.link('self').href;
+    }
+
+    return 'unknown';
   }
 }

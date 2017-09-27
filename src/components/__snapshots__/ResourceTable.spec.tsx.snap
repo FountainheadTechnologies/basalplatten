@@ -44,7 +44,7 @@ exports[`default behaviour renders an Ant Table 1`] = `
       }
     }
     prefixCls="ant-table"
-    rowKey="key"
+    rowKey={[Function]}
     rowSelection={null}
     showHeader={true}
     size="large"
