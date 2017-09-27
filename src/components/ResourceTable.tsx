@@ -161,9 +161,13 @@ export class ResourceTable extends React.PureComponent<Props, State> {
 
     return link.fetch(params as any)
       .then((result: Resource) => {
+        const rows = result.hasEmbedded(embedded || rel) ?
+          result.embedded(embedded || rel) as Resource[] :
+          [];
+
         this.setState({
           total: result.properties.count,
-          rows: result.embedded(embedded || rel) as Resource[]
+          rows
         })
       })
       .finally(() => {

@@ -35,22 +35,28 @@ describe('default behaviour', () => {
   });
 
   describe('fetch', () => {
-    const widgets = [{
-      properties: {
-        name: 'Widget #1',
-      }
-    }, {
-      properties: {
-        name: 'Widget #2'
-      }
-    }];
+    let widgets;
+    let result;
 
-    const result = {
-      embedded: jest.fn((name: string) => widgets),
-      properties: {
-        count: widgets.length
+    beforeEach(() => {
+      widgets = [{
+        properties: {
+          name: 'Widget #1',
+        }
+      }, {
+        properties: {
+          name: 'Widget #2'
+        }
+      }];
+
+      result = {
+        hasEmbedded: () => true,
+        embedded: jest.fn((name: string) => widgets),
+        properties: {
+          count: widgets.length
+        }
       }
-    }
+    });
 
     it('sets Table props before and after loading', () => {
       const table = root.find('Table');
@@ -65,6 +71,21 @@ describe('default behaviour', () => {
         expect(table.prop('loading')).toBe(false);
         expect(table.prop('pagination')).toEqual({ total: 2 });
         expect(table.prop('dataSource')).toBe(widgets);
+      });
+    });
+
+    describe('when `embedded` resource does not exist', () => {
+      beforeEach(() => {
+        result.hasEmbedded = () => false;
+      });
+
+      it('sets table data to an empty array', async () => {
+        const table = root.find('Table');
+        const promise = root.instance().fetch();
+        _deferred.resolve(result);
+
+        await promise;
+        expect(table.prop('dataSource')).toEqual([]);
       });
     });
   })
