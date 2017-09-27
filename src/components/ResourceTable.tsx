@@ -5,6 +5,7 @@ import { ColumnProps } from 'antd/lib/table/Column';
 import { PaginationProps } from 'antd/lib/pagination';
 import { Resource } from '@optics/hal-client';
 import { equals } from 'ramda';
+import { defaultsDeep } from 'lodash';
 import 'antd/lib/table/style';
 
 import { filtersToWhereParam, sorterToOrderParam, Sorter, SORT_TO_ORDER } from '../hoc/stateParamsControlledTable';
@@ -14,6 +15,7 @@ export interface Props extends TableProps<any> {
   rel: string;
   name?: string;
   embedded?: string;
+  params?: {};
 }
 
 export interface State {
@@ -73,11 +75,12 @@ export const columnsToOrderParam = (columns: ColumnProps<any>[] | undefined) => 
   return Object.keys(result).length ? result : undefined;
 }
 
-export const propsToParams = (props: Props) => ({
-  page: (typeof props.pagination === 'object') ? props.pagination.current : undefined,
-  where: columnsToWhereParam(props.columns),
-  order: columnsToOrderParam(props.columns)
-})
+export const propsToParams = (props: Props) =>
+  defaultsDeep({}, props.params, {
+    page: (typeof props.pagination === 'object') ? props.pagination.current : undefined,
+    where: columnsToWhereParam(props.columns),
+    order: columnsToOrderParam(props.columns)
+  })
 
 export class ResourceTable extends React.PureComponent<Props, State> {
   state: State = {
@@ -150,13 +153,13 @@ export class ResourceTable extends React.PureComponent<Props, State> {
     }
   }
 
-  fetch = (params = this.state.params, { resource, rel, name, embedded } = this.props) => {
+  fetch = (params = { ...this.state.params, ...this.props.params }, { resource, rel, name, embedded } = this.props) => {
     this.setState({ loading: true });
 
     const link = name ?
       resource.linkNamed(rel, name) : resource.link(rel);
 
-    return link.fetch(params)
+    return link.fetch(params as any)
       .then((result: Resource) => {
         this.setState({
           total: result.properties.count,
@@ -169,16 +172,16 @@ export class ResourceTable extends React.PureComponent<Props, State> {
   }
 
   onChange = (pagination: PaginationProps, filters: any, sorter: Sorter) => {
-    const { columns, onChange } = this.props;
+    const { columns, onChange, params } = this.props;
 
-    const params = {
+    const nextParams = defaultsDeep({}, params, {
       page: pagination.current || 1,
       where: filtersToWhereParam(columns, filters),
       order: sorterToOrderParam(sorter)
-    };
+    });
 
-    this.setState({ params });
-    this.fetch(params);
+    this.setState({ params: nextParams });
+    this.fetch(nextParams);
 
     if (onChange) {
       onChange(pagination, filters, sorter);
@@ -186,7 +189,12 @@ export class ResourceTable extends React.PureComponent<Props, State> {
   }
 
   protected _nextParams = (nextProps: Props) => {
-    if (equals(nextProps.columns, this.props.columns)) {
+    const columnsOrParamsChanged = (
+      equals(nextProps.columns, this.props.columns) ||
+      equals(nextProps.params, this.props.params)
+    );
+
+    if (!columnsOrParamsChanged) {
       return;
     }
 
