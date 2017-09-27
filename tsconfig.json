@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "es6",
-    "target": "es6",
+    "target": "es5",
     "moduleResolution": "node",
     "sourceMap": false,
     "jsx": "react",
@@ -10,7 +10,8 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "skipLibCheck": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "lib": ["dom", "es6"]
   },
   "include": [
     "src"
