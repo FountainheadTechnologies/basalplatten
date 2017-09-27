@@ -102,7 +102,7 @@ describe('default behaviour', () => {
     });
   });
 
-  describe('when columns prop changes', () => {
+  describe('when `columns` prop changes', () => {
     it('fetches with new params', () => {
       fetch.mockClear();
 
@@ -148,6 +148,61 @@ describe('default behaviour', () => {
       });
 
       expect(fetch).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('when `rel` prop changes', () => {
+    it('fetches with new rel', () => {
+      fetch.mockClear();
+
+      root.setProps({
+        rel: 'users'
+      });
+
+      expect(fetch).toHaveBeenCalledWith(({
+        rel: 'users'
+      }), ({
+        where: undefined,
+        order: undefined,
+        page: undefined
+      }));
+    });
+  });
+
+  describe('when `name` prop changes', () => {
+    it('fetches with new rel', () => {
+      fetch.mockClear();
+
+      root.setProps({
+        name: 'item'
+      });
+
+      expect(fetch).toHaveBeenCalledWith(({
+        rel: 'widgets',
+        name: 'item'
+      }), ({
+        where: undefined,
+        order: undefined,
+        page: undefined
+      }));
+    });
+  });
+
+  describe('when `embedded` prop changes', () => {
+    it('fetches again (although not really necessary)', () => {
+      fetch.mockClear();
+
+      root.setProps({
+        embedded: 'something-else'
+      });
+
+      expect(fetch).toHaveBeenCalledWith(({
+        rel: 'widgets'
+      }), ({
+        where: undefined,
+        order: undefined,
+        page: undefined
+      }));
     });
   });
 });

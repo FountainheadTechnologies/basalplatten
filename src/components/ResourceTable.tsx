@@ -115,11 +115,24 @@ export class ResourceTable extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    const params = this._nextParams(nextProps);
+    let shouldFetch = (
+      (nextProps.rel !== this.props.rel) ||
+      (nextProps.name !== this.props.name) ||
+      // @todo: Changing 'embedded' should not trigger a re-fetch
+      (nextProps.embedded !== this.props.embedded)
+    );
+
+    let params: any = this._nextParams(nextProps);
 
     if (params) {
       this.setState({ params });
-      this.fetch(params);
+      shouldFetch = true;
+    } else {
+      params = this.state.params;
+    }
+
+    if (shouldFetch) {
+      this.fetch(params, nextProps);
     }
   }
 
@@ -137,9 +150,7 @@ export class ResourceTable extends React.PureComponent<Props, State> {
     }
   }
 
-  fetch = (params = this.state.params) => {
-    const { resource, rel, name, embedded } = this.props;
-
+  fetch = (params = this.state.params, { resource, rel, name, embedded } = this.props) => {
     this.setState({ loading: true });
 
     const link = name ?
