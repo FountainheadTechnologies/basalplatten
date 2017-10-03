@@ -183,18 +183,21 @@ export class ResourceTable extends React.PureComponent<Props, State> {
   onChange = (pagination: PaginationProps, filters: any, sorter: Sorter) => {
     const { columns, onChange, params } = this.props;
 
-    const nextParams = defaultsDeep({}, params, {
-      page: pagination.current || 1,
-      where: filtersToWhereParam(columns, filters),
-      order: sorterToOrderParam(sorter)
-    });
+    const values = onChange ?
+      onChange(pagination, filters, sorter) :
+      {
+        page: pagination.current || 1,
+        where: filtersToWhereParam(columns, filters),
+        order: sorterToOrderParam(sorter)
+      };
 
+    if (!values) {
+      return;
+    }
+
+    const nextParams = defaultsDeep({}, params, values);
     this.setState({ params: nextParams });
     this.fetch(nextParams);
-
-    if (onChange) {
-      onChange(pagination, filters, sorter);
-    }
   }
 
   protected _nextParams = (nextProps: Props) => {
