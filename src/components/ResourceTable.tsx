@@ -108,7 +108,7 @@ export class ResourceTable extends React.PureComponent<Props, State> {
       <Table
         rowKey={this._rowKey}
         {...tableProps}
-        title={customTitle ? this._customTitle : undefined}
+        title={customTitle ? this._customTitle : tableProps.title}
         pagination={this.pagination()}
         loading={loading}
         dataSource={rows}
