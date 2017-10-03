@@ -16,11 +16,13 @@ export interface Props extends TableProps<any> {
   name?: string;
   embedded?: string;
   params?: {};
+  customTitle?: (currentPageData: Resource[], resource?: Resource) => React.ReactNode;
 }
 
 export interface State {
   loading: boolean;
   total: number;
+  resource?: Resource;
   rows: Resource[];
   params: {};
 }
@@ -96,6 +98,7 @@ export class ResourceTable extends React.PureComponent<Props, State> {
       rel,
       name,
       embedded,
+      customTitle,
       ...tableProps
     } = this.props;
 
@@ -105,6 +108,7 @@ export class ResourceTable extends React.PureComponent<Props, State> {
       <Table
         rowKey={this._rowKey}
         {...tableProps}
+        title={customTitle ? this._customTitle : undefined}
         pagination={this.pagination()}
         loading={loading}
         dataSource={rows}
@@ -166,6 +170,7 @@ export class ResourceTable extends React.PureComponent<Props, State> {
           [];
 
         this.setState({
+          resource: result,
           total: result.properties.count,
           rows
         })
@@ -217,5 +222,15 @@ export class ResourceTable extends React.PureComponent<Props, State> {
     }
 
     return 'unknown';
+  }
+
+  protected _customTitle = (currentPageData: object[]): React.ReactNode => {
+    const { customTitle } = this.props;
+
+    if (!customTitle) {
+      return;
+    }
+
+    return customTitle(currentPageData as Resource[], this.state.resource);
   }
 }

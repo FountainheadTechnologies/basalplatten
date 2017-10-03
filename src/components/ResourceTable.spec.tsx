@@ -245,3 +245,52 @@ describe('when `name` is specified', () => {
     expect(fetch).toHaveBeenCalledWith({ rel: 'widgets', name: 'collection' }, {});
   });
 });
+
+describe('when `customTitle` prop is specified', () => {
+  let root;
+  let titleFn;
+  let widgets;
+  let result;
+
+  beforeEach(() => {
+    widgets = [{
+      properties: {
+        name: 'Widget #1',
+      }
+    }, {
+      properties: {
+        name: 'Widget #2'
+      }
+    }];
+
+    result = {
+      hasEmbedded: () => true,
+      embedded: jest.fn((name: string) => widgets),
+      properties: {
+        count: widgets.length
+      }
+    };
+
+    titleFn = jest.fn();
+
+    root = mount((
+      <ResourceTable
+        resource={api}
+        rel="widgets"
+        name="collection"
+        customTitle={titleFn}
+      />
+    ));
+  });
+
+  it('is called with current page data and parent resource', async () => {
+    const promise = root.instance().fetch();
+    _deferred.resolve(result);
+    await promise;
+
+    const tableTitleFn = root.find('Table').prop('title');
+    tableTitleFn(widgets);
+
+    expect(titleFn).toHaveBeenCalledWith(widgets, result);
+  });
+});
