@@ -4,10 +4,11 @@ describe('where', () => {
   var obj = {
     user_id: '13',
     owner_id: '37',
-    status: ['completed', 'failed']
+    status: ['completed', 'failed', 'still waiting'],
+    query: 'super cool'
   };
 
-  var str = 'user_id:13!owner_id:37!~status:completed,failed';
+  var str = 'user_id:13!owner_id:37!~status:completed,failed,still%20waiting!query:super%20cool';
 
   it('encodes an object to a string', () => {
     expect(paramTypes.where.encode(obj)).toBe(str);

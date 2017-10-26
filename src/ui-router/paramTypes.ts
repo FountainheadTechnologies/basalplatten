@@ -33,9 +33,12 @@ export const where: ParamTypeDefinition = {
 
     toPairs,
 
-    map(([key, value]) => {
+    map<[string, string | string[]], string>(([key, value]) => {
       if (value instanceof Array) {
         key = `~${key}`;
+        value = value.map(encodeURIComponent);
+      } else {
+        value = encodeURIComponent(value);
       }
 
       return [key, value].join(':');
@@ -53,11 +56,11 @@ export const where: ParamTypeDefinition = {
       if (key[0] === '~') {
         return [
           key.slice(1, key.length),
-          value.split(',')
+          value.split(',').map(decodeURIComponent)
         ];
       }
 
-      return [key, value];
+      return [key, decodeURIComponent(value)];
     }),
 
     fromPairs,
