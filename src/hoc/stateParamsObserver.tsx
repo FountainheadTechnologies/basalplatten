@@ -49,8 +49,8 @@ export const stateParamsObserver =
       render() {
         return (
           <Component
-            {...this.props}
             {...this.state.mappedProps}
+            {...this.props}
             ref={this.props.wrappedComponentRef}
           />
         );
