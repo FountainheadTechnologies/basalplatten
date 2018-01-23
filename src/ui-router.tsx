@@ -14,6 +14,11 @@ export const buildRouter = (): UIRouterReact => {
   router.plugin(UIRouterRx);
 
   router.stateService.defaultErrorHandler(err => {
+    // 'Transition Superseded' errors should not be handled
+    if (err.type && err.type === 2) {
+      return;
+    }
+
     notification.error({
       message: 'State Transition Error',
 
